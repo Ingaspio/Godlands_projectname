@@ -114,7 +114,7 @@ public static class Direction2D
         new Vector2Int(0,-1), //down
         new Vector2Int(-1,-1), //down-left
         new Vector2Int(-1,0),  //left
-        new Vector2Int(-1,1)  //up-lef
+        new Vector2Int(-1,1)  //up-left
     };
 
     public static Vector2Int GetRandomCardinalDirection() 

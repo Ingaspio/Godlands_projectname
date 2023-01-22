@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+//Sunny Valley Studio https://www.youtube.com/watch?v=JOkOih1AKsQ&list=PLcRSafycjWFenI87z7uZHFv6cUG2Tzu9v&index=23&t=3s&ab_channel=SunnyValleyStudio
+
 public class CorridorFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
 {
+    //PCG parameters
     [SerializeField]
     private int corridorLength = 14, corridorCount = 5;
     [SerializeField]
@@ -12,6 +15,11 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     private float roomPercent = 0.8f;
     [SerializeField]
     public SimpleRandomWalkSO roomGenerationParameters;
+
+    //PCG Data
+    private Dictionary<Vector2Int, HashSet<Vector2Int>> roomsDictionary 
+        = new Dictionary<Vector2Int, HashSet<Vector2Int>>();
+    private HashSet<Vector2Int> floorPositions, corridorPositions;
 
     protected override void RunProceduralGeneration()
     {
@@ -74,9 +82,16 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         foreach (var roomPosition in roomsToCreate)
         {
             var roomFloor = RunRandomWalk(randomWalkParameters, roomPosition);
+
+            SaveRoomData(roomPosition, roomFloor);
             roomPositions.UnionWith(roomFloor);
         }
         return roomPositions;
+    }
+
+    private void SaveRoomData(Vector2Int roomPosition, HashSet<Vector2Int> roomFloor)
+    {
+        roomsDictionary[roomPosition] = roomFloor;
     }
 
     private void CreateCorridors(HashSet<Vector2Int> floorPositions, HashSet<Vector2Int> potentialRoomPositions)
@@ -91,6 +106,7 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
             potentialRoomPositions.Add(currentPosition);
             floorPositions.UnionWith(corridor);
         }
+        corridorPositions = new HashSet<Vector2Int>(floorPositions);
     }
  
 }
