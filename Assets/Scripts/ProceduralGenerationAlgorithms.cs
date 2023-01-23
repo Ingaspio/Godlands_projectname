@@ -119,4 +119,5 @@ public static class Direction2D
 
     public static Vector2Int GetRandomCardinalDirection() 
     { return cardinalDirectionsList[Random.Range(0,cardinalDirectionsList.Count)]; }
+
 } 

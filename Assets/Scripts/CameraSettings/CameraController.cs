@@ -12,6 +12,9 @@ public class CameraController : MonoBehaviour
     private CameraControlActions cameraActions;
     private InputAction movement;
     private Transform cameraTransform;
+    //public bool trackPlayer = false;
+    //[SerializeField]
+    //PlayerCharacter character;
 
     //horizontal motion
     [SerializeField]
@@ -56,6 +59,7 @@ public class CameraController : MonoBehaviour
     {
         cameraActions = new CameraControlActions();
         cameraTransform = this.GetComponentInChildren<Camera>().transform;
+        
     }
     private void OnEnable()
     {
@@ -79,6 +83,7 @@ public class CameraController : MonoBehaviour
 
         UpdateVelocity();
         UpdateBasePosition();
+        
         //UpdateCameraPosition();
     }
     private void UpdateVelocity() 
@@ -144,7 +149,16 @@ public class CameraController : MonoBehaviour
                 moveDirection += GetCameraUp();
         targetPosition += moveDirection;
     }
+
 }
+
+
+//public void CameraTracksPlayer() 
+//{
+//    if (trackPlayer == true) targetPosition = new Vector3 (character.transform.position.x, 
+//        character.transform.position.y, cameraTransform.position.z);
+//}
+
 
 
 //private void ZoomCamera(InputAction.CallbackContext inputValue)
