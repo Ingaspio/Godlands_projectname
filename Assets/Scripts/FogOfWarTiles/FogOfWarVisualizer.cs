@@ -14,6 +14,11 @@ public class FogOfWarVisualizer : MonoBehaviour
         var tilePosition = tilemap.WorldToCell((Vector3Int)position);
         tilemap.SetTile(tilePosition, tile);
     }
+    public void ClearSingleFoWTile(Tilemap fowTilemap, Vector3Int position) 
+    {
+        var fowTilePosition = fowTilemap.WorldToCell((Vector3)position); 
+        fowTilemap.SetTile(fowTilePosition, null);
+    }
     private void PaintFoWTiles(IEnumerable<Vector2Int> positions, Tilemap tilemap, TileBase tile)
     {
         foreach (var position in positions)
@@ -21,57 +26,25 @@ public class FogOfWarVisualizer : MonoBehaviour
             PaintSingleFoWTile(tilemap, tile, position);
         }
     }
-    public void PaintFoWTiles(IEnumerable<Vector2Int> fowPositions)
+    //public void ClearFoWTiles(IEnumerable<Vector2> fieldOfView, Tilemap fowTilemap)
+    //{
+    //    foreach (var position in fieldOfView)
+    //    {
+    //        ClearSinleFoWTile(fowTilemap,  position);
+    //    }
+    //}
+    public void PaintFoWTilesInWorld(IEnumerable<Vector2Int> fowPositions)
     {
         PaintFoWTiles(fowPositions, fowTilemap, fowTileBase);
     }
-    public void PaintFoWExploredTiles(IEnumerable<Vector2Int> fowPositions)
+    public void PaintFoWExploredTilesInWorld(IEnumerable<Vector2Int> fowPositions)
     {
         PaintFoWTiles(fowPositions, fowExploredTilemap, fowExploredTileBase);
     }
+    //public void ClearFoWTilesInWorld(IEnumerable<Vector2> fowPositions) 
+    //{
+    //    ClearFoWTiles(fowPositions, fowTilemap);
+    //}
+
+    
 }
-
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    //public static HashSet<Vector2Int> PlayerVisionGenerator(Vector2Int playerPosition, int visionLength)
-    //{
-    //    HashSet<Vector2Int> fieldOfView = new HashSet<Vector2Int>();
-
-    //    fieldOfView.Add(playerPosition);
-    //    var previousPosition = playerPosition;
-
-    //    for (int i = 0; i < visionLength; i++)
-    //    {
-    //        var newPosition = previousPosition + Direction2D.eightDirectionsList[i];
-    //        fieldOfView.Add(newPosition);
-    //        previousPosition = newPosition;
-    //    }
-    //    return fieldOfView;
-    //}
-
-
-    //public void PlayerVisionPainter() 
-    //{
-    //    int xRound = Mathf.RoundToInt(playersTP.transform.position.x);
-    //    int yRound = Mathf.RoundToInt(playersTP.transform.position.y);
-    //    Vector2Int playerPosition = new Vector2Int(xRound, yRound);
-    //    HashSet<Vector2Int> playersVision = PlayerVisionGenerator(playerPosition, 4);
-        
-    //}
-        
-
-    
-

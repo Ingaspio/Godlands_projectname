@@ -15,6 +15,7 @@ public class ObjectsPlacementOnTiles : MonoBehaviour
     public List<Vector3> availablePlaces;
     [SerializeField]
     FogOfWarScript fogOfWarScript;
+    
     void Start()
     {
         tileMap = transform.GetComponentInParent<Tilemap>();
@@ -41,9 +42,8 @@ public class ObjectsPlacementOnTiles : MonoBehaviour
         Debug.Log("Random range element: " + randomElement + ", coordinates: " + availablePlaces[randomElement]);
         prefab.transform.position = availablePlaces[randomElement];
         Instantiate(prefab);
-        fogOfWarScript.PaintFoW();
-        fogOfWarScript.PaintFoWExplored();
     }
+    
 }
     
     

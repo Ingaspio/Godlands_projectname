@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: FogOfWarExplored
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 1934901035, guid: dc9569981aa41c84f9c550b0f28dcbe6, type: 3}
+  m_Sprite: {fileID: -9000362276992120081, guid: a0d3fbbc155eb404a87f827b40a48dfe, type: 3}
   m_Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0.49803922}
   m_Transform:
     e00: 1
