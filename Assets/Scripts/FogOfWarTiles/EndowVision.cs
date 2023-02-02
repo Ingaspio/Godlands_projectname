@@ -15,10 +15,10 @@ public class EndowVision : MonoBehaviour
     {
         foWManager = FindObjectOfType<FoWManager>();
     }
-    private void Start()
-    {
-        StartCoroutine(SpreadRoutine());
-    }
+    //private void Start()
+    //{
+    //    StartCoroutine(SpreadRoutine());
+    //}
     private IEnumerator SpreadRoutine() 
     {
         while (true)

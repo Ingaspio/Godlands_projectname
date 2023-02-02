@@ -10,6 +10,8 @@ public class FoWManager : MonoBehaviour
     Tilemap fogOfWarTilemap, fogOfWarTilemapExplored;
     [SerializeField]
     FogOfWarVisualizer fogOfWarVisualizer;
+    [SerializeField]
+    FogOfWarScript fogOfWarScript;
     private Dictionary<Vector3Int, float> visibleTiles = new();
     [SerializeField]
     float maxVisability = 1f;
@@ -19,6 +21,8 @@ public class FoWManager : MonoBehaviour
     private float visionFallOff, reduceAmount, reduceInterwall = 1f;
     [SerializeField]
     public int testRadius;
+    [SerializeField]
+    GameObject playersTP;
 
     private void ChangeVisableTiles(Vector3Int gridPosition, float changeBy) 
     {
@@ -70,8 +74,8 @@ public class FoWManager : MonoBehaviour
     public void AddVision(Vector2 worldPosition, float visionAmount, int radius) 
     {
         Vector3Int gridPosition = fogOfWarTilemapExplored.WorldToCell(worldPosition);
-        //fogOfWarVisualizer.ClearSingleFoWTile(fogOfWarTilemap, gridPosition);
-        //fogOfWarVisualizer.ClearSingleFoWTile(fogOfWarTilemapExplored, gridPosition);
+        fogOfWarVisualizer.Vector3IntClearSingleTile(fogOfWarTilemap, gridPosition);
+        fogOfWarVisualizer.Vector3IntClearSingleTile(fogOfWarTilemapExplored, gridPosition);
         for (int x = -radius; x <= radius; x++)
         {
             for (int y = -radius; y <= radius; y++)
@@ -81,13 +85,19 @@ public class FoWManager : MonoBehaviour
                 {
                     Vector3Int nextTilePosition = new Vector3Int(gridPosition.x + x, gridPosition.y + y, 0);
                     ChangeVisableTiles(nextTilePosition, visionAmount - (distanceFromCenter * visionFallOff * visionAmount));
-                    fogOfWarVisualizer.ClearSingleFoWTile(fogOfWarTilemap, nextTilePosition);
-                    //fogOfWarVisualizer.ClearSingleFoWTile(fogOfWarTilemapExplored, nextTilePosition);
+                    fogOfWarVisualizer.Vector3IntClearSingleTile(fogOfWarTilemap, nextTilePosition);
+                    fogOfWarVisualizer.Vector3IntClearSingleTile(fogOfWarTilemapExplored, nextTilePosition);
                 }
             }
         }
-        ChangeVisableTiles(gridPosition, visionAmount);
+        //ChangeVisableTiles(gridPosition, visionAmount);
         VisualizeVisability();
     }
-    
+    public void AddVisionPatched(Vector2 playerTP) 
+    {
+        Vector2 playerPosition = new Vector2(playersTP.transform.position.x, playersTP.transform.position.y);
+        HashSet<Vector2Int> playerVision = fogOfWarScript.FoWVisionTiles(playerPosition, testRadius);
+        fogOfWarVisualizer.ClearFoWTiles(playerVision, fogOfWarTilemap);
+        fogOfWarVisualizer.ClearFoWTiles(playerVision, fogOfWarTilemapExplored);
+    }
 }

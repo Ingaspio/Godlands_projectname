@@ -38,7 +38,7 @@ public class MapManager : MonoBehaviour
     {
         fogOfWarScript.PaintFoW();
         fogOfWarScript.PaintFoWExplored();
-        StartCoroutine(foWManager.ReduceVisabilityRoutine());
+        //StartCoroutine(foWManager.ReduceVisabilityRoutine());
     }
 
     void Update()
@@ -55,11 +55,9 @@ public class MapManager : MonoBehaviour
 
             //print("Tile position: " + gridPosition + "Darkness: " + darkness);
         }
-        
-        //Vector2 playerPosition = new Vector2(playersTP.transform.position.x, playersTP.transform.position.y);
-        //foWManager.AddVision(playerPosition, testAddvisionAmount, foWManager.testRadius);
 
-
-
+        fogOfWarScript.PaintFoWExplored();
+        Vector2 playerPosition = new Vector2(playersTP.transform.position.x, playersTP.transform.position.y);
+        foWManager.AddVisionPatched(playerPosition);
     }
 }

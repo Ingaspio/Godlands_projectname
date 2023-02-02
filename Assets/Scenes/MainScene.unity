@@ -30390,6 +30390,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: 35
   fogOfWarVisualizer: {fileID: 1954684417}
+  fogOfWarExplored: {fileID: 711542549}
   fowSizeInt: {x: 100, y: 100}
 --- !u!114 &1892079849
 MonoBehaviour:
@@ -30406,6 +30407,7 @@ MonoBehaviour:
   fogOfWarTilemap: {fileID: 261116164}
   fogOfWarTilemapExplored: {fileID: 711542549}
   fogOfWarVisualizer: {fileID: 1954684417}
+  fogOfWarScript: {fileID: 1892079848}
   maxVisability: 12
   maxVisabilityColor: {r: 1, g: 1, b: 1, a: 0}
   minVisabilityColor: {r: 0, g: 0, b: 0, a: 0.5882353}
@@ -30414,6 +30416,7 @@ MonoBehaviour:
   reduceAmount: -1
   reduceInterwall: 0.3
   testRadius: 3
+  playersTP: {fileID: 1992566183}
 --- !u!1 &1906758588
 GameObject:
   m_ObjectHideFlags: 0
@@ -30633,7 +30636,6 @@ GameObject:
   - component: {fileID: 1992566184}
   - component: {fileID: 1992566186}
   - component: {fileID: 1992566187}
-  - component: {fileID: 1992566188}
   m_Layer: 0
   m_Name: PlayerSpace
   m_TagString: Untagged
@@ -30750,22 +30752,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1992566188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1992566183}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e072437ab21b0b49b0ec828dfd184b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spreadAmount: 5
-  spreadInterwall: 0.4
-  radius: 5
-  foWManager: {fileID: 0}
 --- !u!1 &2045440303
 GameObject:
   m_ObjectHideFlags: 0
