@@ -4,25 +4,29 @@ using UnityEngine.Tilemaps;
 public class FogOfWarScript : MonoBehaviour
 {
     public int offset = 35;
-    public FogOfWarVisualizer fogOfWarVisualizer;
     [SerializeField]
-    Tilemap fogOfWarExplored;
+    public TilemapVisualizer tilemapVisualizer;
+    [SerializeField]
+    Tilemap fogOfWar, fogOfWarExplored;
+    [SerializeField]
+    public int testRadius;
     [SerializeField]
     protected Vector2Int fowSizeInt = new Vector2Int(50, 50);
+    [SerializeField]
+    GameObject playersTP;
 
     public void PaintFoW()
     {
         HashSet<Vector2Int> fowTiles = FoWTilesCreation(fowSizeInt);
-        fogOfWarVisualizer.PaintFoWTilesInWorld(fowTiles);
+        tilemapVisualizer.PaintFoWTiles(fowTiles);
     }
     public void PaintFoWExplored()
     {
         HashSet<Vector2Int> fowTiles = FoWTilesCreation(fowSizeInt);
-        fogOfWarVisualizer.PaintFoWExploredTilesInWorld(fowTiles);
+        tilemapVisualizer.PaintFoWExploredTiles(fowTiles);
     }
     public HashSet<Vector2Int> FoWTilesCreation(Vector2Int fowSize)
     {
-
         HashSet<Vector2Int> fowTiles = new();
         for (int x = 0 - offset; x < fowSize.x; x++)
         {
@@ -31,7 +35,6 @@ public class FogOfWarScript : MonoBehaviour
                 Vector2Int position = new Vector2Int(x, y);
                 fowTiles.Add(position);
             }
-
         }
         return fowTiles;
     }
@@ -53,5 +56,12 @@ public class FogOfWarScript : MonoBehaviour
             }
         }
         return playerVision;
+    }
+    public void AddVision(Vector2 playerTP)
+    {
+        Vector2 playerPosition = new Vector2(playersTP.transform.position.x, playersTP.transform.position.y);
+        HashSet<Vector2Int> playerVision = FoWVisionTiles(playerPosition, testRadius);
+        tilemapVisualizer.ClearTiles(playerVision, fogOfWar);
+        tilemapVisualizer.ClearTiles(playerVision, fogOfWarExplored);
     }
 }

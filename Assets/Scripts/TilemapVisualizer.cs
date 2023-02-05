@@ -6,14 +6,22 @@ using UnityEngine.Tilemaps;
 public class TilemapVisualizer : MonoBehaviour
 {
     [SerializeField]
-    private Tilemap floorTilemap, wallTilemap;
+    private Tilemap floorTilemap, wallTilemap, fowTilemap, fowExploredTilemap;
     [SerializeField]
-    private TileBase floorTile, wallTop, wallSideRight, wallSideLeft, wallBottom, wallFull, wallInnerCornerDownLeft, wallInnerCornerDownRight, 
+    private TileBase fowExploredTile, fowTile, floorTile, wallTop, wallSideRight, wallSideLeft, wallBottom, wallFull, wallInnerCornerDownLeft, wallInnerCornerDownRight, 
         wallDiagonalCornerDownRight, wallDiagonalCornerDownLeft, wallDiagonalCornerUpRight, wallDiagonalCornerUpLeft;
 
     public void PaintFloorTiles(IEnumerable<Vector2Int> floorPositions) 
     {
         PaintTiles(floorPositions, floorTilemap, floorTile);
+    }
+    public void PaintFoWTiles(IEnumerable<Vector2Int> fowPosition) 
+    {
+        PaintTiles(fowPosition, fowTilemap, fowTile);
+    }
+    public void PaintFoWExploredTiles(IEnumerable<Vector2Int> fowPosition)
+    {
+        PaintTiles(fowPosition, fowExploredTilemap, fowExploredTile);
     }
 
     private void PaintTiles(IEnumerable<Vector2Int> positions, Tilemap tilemap, TileBase tile)
@@ -24,12 +32,26 @@ public class TilemapVisualizer : MonoBehaviour
         }
     }
 
+
     private void PaintSingleTile(Tilemap tilemap, TileBase tile, Vector2Int position)
     {
         var tilePosition = tilemap.WorldToCell((Vector3Int)position);
         tilemap.SetTile(tilePosition,tile);
     }
 
+    private void ClearSingleTile(Tilemap tilemap, Vector2Int position)
+    {
+        var tilePosition = tilemap.WorldToCell((Vector3Int)position);
+        tilemap.SetTile(tilePosition, null);
+    }
+
+    public void ClearTiles(IEnumerable<Vector2Int> fieldOfView, Tilemap fowTilemap)
+    {
+        foreach (var position in fieldOfView)
+        {
+            ClearSingleTile(fowTilemap, position);
+        }
+    }
     public void Clear()
     {
         floorTilemap.ClearAllTiles();

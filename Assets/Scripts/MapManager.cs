@@ -14,8 +14,6 @@ public class MapManager : MonoBehaviour
     [SerializeField]
     private float testAddvisionAmount;
     [SerializeField]
-    private FoWManager foWManager;
-    [SerializeField]
     private FogOfWarScript fogOfWarScript;
 
     [SerializeField]
@@ -38,7 +36,7 @@ public class MapManager : MonoBehaviour
     {
         fogOfWarScript.PaintFoW();
         fogOfWarScript.PaintFoWExplored();
-        //StartCoroutine(foWManager.ReduceVisabilityRoutine());
+
     }
 
     void Update()
@@ -49,15 +47,10 @@ public class MapManager : MonoBehaviour
             Vector3Int gridPosition = tilemap.WorldToCell(mousePosition);
 
             TileBase clickedTile = tilemap.GetTile(gridPosition);
-
-            
-            //int darkness = dataFromTiles[clickedTile].tileValueInt;
-
-            //print("Tile position: " + gridPosition + "Darkness: " + darkness);
         }
 
         fogOfWarScript.PaintFoWExplored();
         Vector2 playerPosition = new Vector2(playersTP.transform.position.x, playersTP.transform.position.y);
-        foWManager.AddVisionPatched(playerPosition);
+        fogOfWarScript.AddVision(playerPosition);
     }
 }
