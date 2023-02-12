@@ -7,10 +7,7 @@ public class MapManager : MonoBehaviour
     [SerializeField]
     Tilemap tilemap;
 
-    [SerializeField]
-    private List<TileData> tileDatas;
-
-    private Dictionary<TileBase, TileData> dataFromTiles;
+    
     [SerializeField]
     private float testAddvisionAmount;
     [SerializeField]
@@ -19,18 +16,18 @@ public class MapManager : MonoBehaviour
     [SerializeField]
     GameObject playersTP;
 
-    private void Awake()
-    {
-        dataFromTiles = new Dictionary<TileBase, TileData>();
+    //private void Awake()
+    //{
+    //    dataFromTiles = new Dictionary<TileBase, TileData>();
 
-        foreach (var tileData in tileDatas)
-        {
-            foreach (var tile in tileData.tiles)
-            {
-                dataFromTiles.Add(tile, tileData);
-            }
-        }
-    }
+    //    foreach (var tileData in tileDatas)
+    //    {
+    //        foreach (var tile in tileData.tiles)
+    //        {
+    //            dataFromTiles.Add(tile, tileData);
+    //        }
+    //    }
+    //}
 
     private void Start()
     {
