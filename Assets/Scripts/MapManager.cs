@@ -6,7 +6,8 @@ public class MapManager : MonoBehaviour
 {
     [SerializeField]
     Tilemap tilemap;
-
+    [SerializeField]
+    PathfindMovement movement;
     
     [SerializeField]
     private float testAddvisionAmount;
@@ -49,5 +50,6 @@ public class MapManager : MonoBehaviour
         fogOfWarScript.PaintFoWExplored();
         Vector2 playerPosition = new Vector2(playersTP.transform.position.x, playersTP.transform.position.y);
         fogOfWarScript.AddVision(playerPosition);
+        movement.PathfindMove();
     }
 }

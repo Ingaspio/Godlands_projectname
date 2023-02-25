@@ -10,13 +10,17 @@ public class ObjectsPlacementOnTiles : MonoBehaviour
 {
     public Tilemap tileMap;
     public Vector3 tileAnchor;
-    public GameObject prefab;
+    //public GameObject prefab;
+    public List<GameObject> objects;
     [HideInInspector]
     public List<Vector3> availablePlaces;
-    [SerializeField]
-    FogOfWarScript fogOfWarScript;
     
     void Start()
+    {
+        FindAvailablePlaces();
+        PlaceObjects();
+    }
+    void FindAvailablePlaces() 
     {
         tileMap = transform.GetComponentInParent<Tilemap>();
         availablePlaces = new List<Vector3>();
@@ -38,12 +42,18 @@ public class ObjectsPlacementOnTiles : MonoBehaviour
                 }
             }
         }
-        int randomElement = Random.Range(0, availablePlaces.Count + 1);
-        Debug.Log("Random range element: " + randomElement + ", coordinates: " + availablePlaces[randomElement]);
-        prefab.transform.position = availablePlaces[randomElement];
-        Instantiate(prefab);
     }
-    
+    void PlaceObjects() 
+    {
+        for (int i = 0; i < objects.Count; i++)
+        {
+            int randomElement = Random.Range(0, availablePlaces.Count);
+            Debug.Log("Random range element: " + randomElement + ", coordinates: " + availablePlaces[randomElement]);
+            objects[i].transform.position = availablePlaces[randomElement];
+            Instantiate(objects[i]);
+        }
+        
+    }
 }
     
     
