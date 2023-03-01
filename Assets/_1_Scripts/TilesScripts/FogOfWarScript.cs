@@ -12,8 +12,6 @@ public class FogOfWarScript : MonoBehaviour
     public int testRadius;
     [SerializeField]
     protected Vector2Int fowSizeInt = new Vector2Int(50, 50);
-    [SerializeField]
-    GameObject playersTP;
 
     public void PaintFoW()
     {
@@ -59,7 +57,8 @@ public class FogOfWarScript : MonoBehaviour
     }
     public void AddVision(Vector2 playerTP)
     {
-        Vector2 playerPosition = new Vector2(playersTP.transform.position.x, playersTP.transform.position.y);
+        PlayerCharacter player = FindObjectOfType<PlayerCharacter>();
+        Vector2 playerPosition = new Vector2(player.transform.position.x, player.transform.position.y);
         HashSet<Vector2Int> playerVision = FoWVisionTiles(playerPosition, testRadius);
         tilemapVisualizer.ClearTiles(playerVision, fogOfWar);
         tilemapVisualizer.ClearTiles(playerVision, fogOfWarExplored);

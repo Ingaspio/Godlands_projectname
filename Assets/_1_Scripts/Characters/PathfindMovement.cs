@@ -9,26 +9,28 @@ using Input = UnityEngine.Input;
 
 public class PathfindMovement : MonoBehaviour
 {
-    [SerializeField]
-    Tilemap floor;
-    public Transform startPos;
-    public Transform endPos;
-    [SerializeField]
-    LineRenderer linePath;
+    //[SerializeField]
+    //Tilemap walls;
+    //[SerializeField]
+    //LineRenderer linePath;
     List<Vector3> wayPoints;
-
     private void Start()
     {
         wayPoints = new List<Vector3>();
+
     }
     public void PathfindMove() 
     {
+        Transform startPos = FindObjectOfType<PlayerCharacter>().transform;
+        Transform endPos = FindObjectOfType<Destination>().transform;
+        LineRenderer linePath = FindObjectOfType<LineRenderer>();
+        Tilemap walls = FindObjectOfType<Tilemap>();
         if (Input.GetMouseButtonDown(0))
         {
             var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0;
             endPos.position = mousePos;
-            wayPoints = AStar.FindPathClosest(floor, startPos.position, endPos.position);
+            wayPoints = AStar.FindPathClosest(walls, startPos.position, endPos.position);
             if (wayPoints != null)
             {
                 for (int i = 0; i < wayPoints.Count; i++)

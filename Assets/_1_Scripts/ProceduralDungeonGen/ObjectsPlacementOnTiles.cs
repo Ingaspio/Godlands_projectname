@@ -51,6 +51,7 @@ public class ObjectsPlacementOnTiles : MonoBehaviour
             Debug.Log("Random range element: " + randomElement + ", coordinates: " + availablePlaces[randomElement]);
             objects[i].transform.position = availablePlaces[randomElement];
             Instantiate(objects[i]);
+            availablePlaces.Remove(availablePlaces[randomElement]);
         }
         
     }
