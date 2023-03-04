@@ -6,6 +6,7 @@ using UnityEngine.Tilemaps;
 using UnityEngine.Windows;
 using DG.Tweening;
 using Input = UnityEngine.Input;
+using UnityEditor.UIElements;
 
 public class PathfindMovement : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class PathfindMovement : MonoBehaviour
         Transform startPos = FindObjectOfType<PlayerCharacter>().transform;
         Transform endPos = FindObjectOfType<Destination>().transform;
         LineRenderer linePath = FindObjectOfType<LineRenderer>();
-        Tilemap walls = FindObjectOfType<Tilemap>();
+        Tilemap walls = GameObject.Find("Walls").GetComponent<Tilemap>();
         if (Input.GetMouseButtonDown(0))
         {
             var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);

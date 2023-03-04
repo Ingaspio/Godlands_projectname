@@ -10,12 +10,11 @@ public class ObjectsPlacementOnTiles : MonoBehaviour
 {
     public Tilemap tileMap;
     public Vector3 tileAnchor;
-    //public GameObject prefab;
     public List<GameObject> objects;
     [HideInInspector]
     public List<Vector3> availablePlaces;
-    
-    void Start()
+
+    private void Awake()
     {
         FindAvailablePlaces();
         PlaceObjects();

@@ -17,13 +17,17 @@ public class MapManager : MonoBehaviour
     
     private void Start()
     {
-        Entrance entrances = FindObjectOfType<Entrance>();
+        //Entrance entrances = FindObjectOfType<Entrance>();
+        //Exit exit = FindObjectOfType<Exit>();
+        //if(exit != null)
+        //    exit.ExitDungeonScene();
         PlayerCharacter player = FindObjectOfType<PlayerCharacter>();
         fogOfWarScript.PaintFoW();
         fogOfWarScript.PaintFoWExplored();
         player.PlayerDontDestroy();
         StartCoroutine(entranceRoutine.SceneChangeRoutine());
-        entrances.EnterDungeonScene();
+        //entrances.EnterDungeonScene();
+        
     }
 
     void Update()

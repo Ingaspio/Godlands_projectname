@@ -739,6 +739,7 @@ MonoBehaviour:
   tileAnchor: {x: 0.5, y: 0.5, z: 0}
   objects:
   - {fileID: 2338523411908785306, guid: ca26f8627d9470940b7ec659baa806f4, type: 3}
+  - {fileID: 6891349501694951064, guid: 1e4236a2bc8ce084ea837d4c31a2dc32, type: 3}
   availablePlaces: []
 --- !u!4 &437610524
 Transform:

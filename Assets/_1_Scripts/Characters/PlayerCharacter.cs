@@ -10,8 +10,6 @@ public class PlayerCharacter : MonoBehaviour
    {
         if (instance != null)
             Destroy(gameObject);
-        else if (instance == null)
-            Debug.Log("there is no player object");
         else
             instance = this;
 

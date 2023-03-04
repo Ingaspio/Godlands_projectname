@@ -11,5 +11,6 @@ public class Entrance : MonoBehaviour
         PlayerCharacter player = FindObjectOfType<PlayerCharacter>();
         if (player.transform.position == transform.position && Input.GetKeyDown("e"))
            SceneManager.LoadScene(dungeonSceneName);
+        
     }    
 }
