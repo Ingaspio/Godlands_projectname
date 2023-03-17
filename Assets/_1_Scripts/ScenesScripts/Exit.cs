@@ -8,9 +8,16 @@ public class Exit : MonoBehaviour
     public string regionName;
     public void ExitDungeonScene()
     {
-            PlayerCharacter player = FindObjectOfType<PlayerCharacter>();
-            if (player.transform.position == transform.position && Input.GetKeyDown("e"))
-                SceneManager.LoadScene(regionName);
+        PlayerCharacter player = FindObjectOfType<PlayerCharacter>();
+        LevelManager levelManager = FindObjectOfType<LevelManager>();
+        if (player.transform.position == transform.position && Input.GetKeyDown("e"))
+        {
+            SaveLoadUtility saveLoadUtility = FindObjectOfType<SaveLoadUtility>();
+            saveLoadUtility.SaveGame(SceneManager.GetActiveScene().name);
+            levelManager.SaveLevel();
+            SceneManager.LoadScene(regionName);
+            levelManager.LoadLevel(regionName);
+        }
             
     }
 }

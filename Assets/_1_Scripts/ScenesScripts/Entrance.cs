@@ -9,8 +9,16 @@ public class Entrance : MonoBehaviour
     public void EnterDungeonScene() 
     {
         PlayerCharacter player = FindObjectOfType<PlayerCharacter>();
+        LevelManager levelManager = FindObjectOfType<LevelManager>();
         if (player.transform.position == transform.position && Input.GetKeyDown("e"))
-           SceneManager.LoadScene(dungeonSceneName);
-        
+        {
+            SaveLoadUtility saveLoadUtility = FindObjectOfType<SaveLoadUtility>();
+            saveLoadUtility.SaveGame(SceneManager.GetActiveScene().name);
+            levelManager.SaveLevel();
+            SceneManager.LoadScene(dungeonSceneName);
+            //saveLoadUtility.LoadGame(dungeonSceneName);
+            //levelManager.LoadLevel(dungeonSceneName);
+        }
+  
     }    
 }

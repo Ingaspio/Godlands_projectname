@@ -11,13 +11,13 @@ public class ObjectsPlacementOnTiles : MonoBehaviour
     public Tilemap tileMap;
     public Vector3 tileAnchor;
     public List<GameObject> objects;
+    public SeedGeneration seedGeneration;
     [HideInInspector]
     public List<Vector3> availablePlaces;
 
     private void Awake()
     {
         FindAvailablePlaces();
-        PlaceObjects();
     }
     void FindAvailablePlaces() 
     {
@@ -42,12 +42,13 @@ public class ObjectsPlacementOnTiles : MonoBehaviour
             }
         }
     }
-    void PlaceObjects() 
+    public void PlaceObjects() 
     {
+        Random.InitState(seedGeneration.currentSeed);
         for (int i = 0; i < objects.Count; i++)
         {
             int randomElement = Random.Range(0, availablePlaces.Count);
-            Debug.Log("Random range element: " + randomElement + ", coordinates: " + availablePlaces[randomElement]);
+            //Debug.Log("Random range element: " + randomElement + ", coordinates: " + availablePlaces[randomElement]);
             objects[i].transform.position = availablePlaces[randomElement];
             Instantiate(objects[i]);
             availablePlaces.Remove(availablePlaces[randomElement]);

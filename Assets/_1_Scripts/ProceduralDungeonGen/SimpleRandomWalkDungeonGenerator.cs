@@ -9,7 +9,8 @@ public class SimpleRandomWalkDungeonGenerator : AbstractDungeonGenerator
     
     [SerializeField]
     protected SimpleRandomWalkSO randomWalkParameters;
-    
+    [SerializeField]
+    SeedGeneration seedGeneration;
 
     protected override void RunProceduralGeneration() 
     { 
@@ -21,6 +22,7 @@ public class SimpleRandomWalkDungeonGenerator : AbstractDungeonGenerator
 
     protected HashSet<Vector2Int> RunRandomWalk(SimpleRandomWalkSO parameters, Vector2Int position) 
     {
+        Random.InitState(seedGeneration.currentSeed);
         var currentPosition = position;
         HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
         for (int i = 0; i < parameters.iterations; i++)

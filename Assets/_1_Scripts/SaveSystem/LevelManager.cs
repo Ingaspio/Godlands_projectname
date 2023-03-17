@@ -1,18 +1,13 @@
-
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using UnityEngine;
 using System.IO;
 using System.Collections.Generic;
 
 public class LevelManager : MonoBehaviour
-{
-    //public static LevelManager instance; 
+{ 
     public List<TileData> tiles = new List<TileData>();    
-    //void Awake()
-    //{
-    //    if (instance == null) instance = this;
-    //    else Destroy(this);
-    //}
+    
     public List<Tilemap> tilemaps;
     public void SaveLevel() 
     {
@@ -35,16 +30,20 @@ public class LevelManager : MonoBehaviour
                 }
             }
             string json = JsonUtility.ToJson(leveldata, true);
-            File.WriteAllText(Application.dataPath + $"/testlevel{maps.name}.json ", json);
-            Debug.Log("Level saved");
+            //for (int s = 0; s <= SceneManager.sceneCount; s++)
+            //{
+                
+            //}
+            File.WriteAllText(Application.dataPath + SceneManager.GetActiveScene().name + ".json ", json);
+            Debug.Log("Level " + SceneManager.GetActiveScene().name + " saved");
         }
 
     }
-    public void LoadLevel() 
+    public void LoadLevel(string sceneName) 
     {
         foreach (var maps in tilemaps)
         {
-            string json = File.ReadAllText(Application.dataPath + $"/testlevel{maps.name}.json ");
+            string json = File.ReadAllText(Application.dataPath + sceneName + ".json ");
             LevelData leveldata = JsonUtility.FromJson<LevelData>(json);
 
             maps.ClearAllTiles();

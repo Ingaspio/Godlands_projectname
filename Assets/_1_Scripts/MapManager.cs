@@ -1,5 +1,6 @@
 using UnityEngine.Tilemaps;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
 public class MapManager : MonoBehaviour
@@ -17,16 +18,16 @@ public class MapManager : MonoBehaviour
     
     private void Start()
     {
-        //Entrance entrances = FindObjectOfType<Entrance>();
-        //Exit exit = FindObjectOfType<Exit>();
-        //if(exit != null)
-        //    exit.ExitDungeonScene();
+        SaveLoadUtility saveLoadUtility = FindObjectOfType<SaveLoadUtility>();
+        saveLoadUtility.SaveGame(SceneManager.GetActiveScene().name);
+        ObjectsPlacementOnTiles objectPlacement = FindObjectOfType<ObjectsPlacementOnTiles>();
+        objectPlacement.PlaceObjects();
         PlayerCharacter player = FindObjectOfType<PlayerCharacter>();
-        fogOfWarScript.PaintFoW();
+        
+        //fogOfWarScript.PaintFoW();
         fogOfWarScript.PaintFoWExplored();
         player.PlayerDontDestroy();
         StartCoroutine(entranceRoutine.SceneChangeRoutine());
-        //entrances.EnterDungeonScene();
         
     }
 
