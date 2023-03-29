@@ -9,8 +9,7 @@ public class FogOfWarScript : MonoBehaviour
     Tilemap fogOfWar, fogOfWarExplored, floorTilemap;
     [SerializeField]
     public int testRadius;
-    //[SerializeField]
-    //protected Vector2Int fowSizeInt = new Vector2Int(50, 50);
+    
 
     public void PaintFoW()
     {

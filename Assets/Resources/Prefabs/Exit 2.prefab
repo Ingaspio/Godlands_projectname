@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8968369953328209823}
   - component: {fileID: -4780460980305371395}
-  - component: {fileID: 1932157796618248454}
-  - component: {fileID: 1693046164891313367}
-  - component: {fileID: -1139946830955925054}
+  - component: {fileID: -3322272836583219138}
+  - component: {fileID: 2609266627569154850}
+  - component: {fileID: -5865061127547048464}
   m_Layer: 0
-  m_Name: Entrance 3
+  m_Name: Exit 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2338523411908785306}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.5, y: -2.5, z: 0}
+  m_LocalPosition: {x: 0.5, y: -5.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 1042098557448713531, guid: a0d3fbbc155eb404a87f827b40a48dfe, type: 3}
+  m_Sprite: {fileID: 6505958660565071534, guid: a0d3fbbc155eb404a87f827b40a48dfe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1932157796618248454
+--- !u!114 &-3322272836583219138
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,9 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96e977b65d6712499341e7d6abb4341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeonSceneName: 3
-  exitName: Dungeon3
---- !u!114 &1693046164891313367
+  dungeonSceneName: MainScene
+  exitName: MainScene2
+--- !u!114 &2609266627569154850
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,8 +113,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0d34e73c28316443b32e3fe3c55f0ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lastExitName: MainScene3
---- !u!61 &-1139946830955925054
+  lastExitName: Dungeon2
+--- !u!61 &-5865061127547048464
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

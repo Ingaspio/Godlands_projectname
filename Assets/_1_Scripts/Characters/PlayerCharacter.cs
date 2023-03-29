@@ -6,12 +6,12 @@ using UnityEngine;
 public class PlayerCharacter : MonoBehaviour
 {
    public static PlayerCharacter instance;
-   public void PlayerDontDestroy() 
+   public void Start() 
    {
         if (instance != null)
-            Destroy(gameObject);
+        { Destroy(gameObject); }
         else
-            instance = this;
+        { instance = this; }
 
         DontDestroyOnLoad(gameObject);
    }

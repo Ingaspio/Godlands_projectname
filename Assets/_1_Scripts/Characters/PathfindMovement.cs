@@ -9,14 +9,15 @@ using Input = UnityEngine.Input;
 using UnityEditor.UIElements;
 using System.Linq;
 
-public class PathfindMovement : MonoBehaviour
+public class PathfindMovement : MonoCache
 {
     List<Vector3> wayPoints = new List<Vector3>();
     int tapTime = 0;
+    public bool showDebug = true;
     
-    public void PathfindMove() 
+    public override void OnTick() 
     {
-        Transform startPos = FindObjectOfType<PlayerCharacter>().transform;
+        Transform startPos = PlayerCharacter.instance.transform;
         Transform endPos = FindObjectOfType<Destination>().transform;
         LineRenderer linePath = FindObjectOfType<LineRenderer>();
         Tilemap walls = GameObject.Find("Walls").GetComponent<Tilemap>();
@@ -45,9 +46,10 @@ public class PathfindMovement : MonoBehaviour
                     }
                     else { startPos.DOComplete(); }
                 }
-                if (tapTime == 2 && wayPoints != null && Vector3.Distance(wayPoints.LastOrDefault(), mousePos) < 0.1f)
+                if (tapTime == 2 && wayPoints != null && Vector3.Distance(wayPoints.LastOrDefault(), mousePos) < 0.25f)
                 {
-                    Debug.Log("Last Vector: " + wayPoints.LastOrDefault());
+                    if (showDebug == true)
+                        Debug.Log("Last Vector: " + wayPoints.LastOrDefault());
                     startPos.DOPath(wayPoints.ToArray(), 1f);
                 }
                 if (tapTime >= 2)

@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8968369953328209823}
   - component: {fileID: -4780460980305371395}
+  - component: {fileID: -3322272836583219138}
   - component: {fileID: 2609266627569154850}
-  - component: {fileID: -6872571861788816922}
+  - component: {fileID: -5865061127547048464}
   m_Layer: 0
-  m_Name: Exit
+  m_Name: Exit 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,6 +87,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-3322272836583219138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2338523411908785306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96e977b65d6712499341e7d6abb4341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dungeonSceneName: MainScene
+  exitName: MainScene3
 --- !u!114 &2609266627569154850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,22 +113,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0d34e73c28316443b32e3fe3c55f0ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regionName: MainScene
---- !u!114 &-6872571861788816922
-MonoBehaviour:
+  lastExitName: Dungeon3
+--- !u!61 &-5865061127547048464
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2338523411908785306}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c19f3e134862e74dbc98cb514a82ef5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabName: Exit
-  id: 4
-  idParent: 
-  dontSave: 0
-  componentSaveMode: 0
-  componentTypesToSave: []
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0

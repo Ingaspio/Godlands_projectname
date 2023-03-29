@@ -5,19 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class Exit : MonoBehaviour
 {
-    public string regionName;
-    public void ExitDungeonScene()
+    public string lastExitName;
+    public void Start()
     {
-        PlayerCharacter player = FindObjectOfType<PlayerCharacter>();
-        LevelManager levelManager = FindObjectOfType<LevelManager>();
-        if (player.transform.position == transform.position && Input.GetKeyDown("e"))
+        if (PlayerPrefs.GetString("LastExitName") == lastExitName)
         {
-            SaveLoadUtility saveLoadUtility = FindObjectOfType<SaveLoadUtility>();
-            saveLoadUtility.SaveGame(SceneManager.GetActiveScene().name);
-            levelManager.SaveLevel();
-            SceneManager.LoadScene(regionName);
-            levelManager.LoadLevel(regionName);
-        }
-            
+            PlayerCharacter.instance.transform.position = transform.position;
+        }     
     }
 }

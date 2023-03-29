@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8968369953328209823}
   - component: {fileID: -4780460980305371395}
   - component: {fileID: 1932157796618248454}
-  - component: {fileID: 5511293022807478767}
+  - component: {fileID: 8673606845348133375}
   m_Layer: 0
   m_Name: Entrance 2
   m_TagString: Untagged
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2338523411908785306}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 1.5, z: 0}
+  m_LocalPosition: {x: 2.5, y: -3.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -99,7 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dungeonSceneName: 2
---- !u!114 &5511293022807478767
+  exitName: Dungeon2
+--- !u!114 &8673606845348133375
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,12 +109,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2338523411908785306}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c19f3e134862e74dbc98cb514a82ef5, type: 3}
+  m_Script: {fileID: 11500000, guid: f0d34e73c28316443b32e3fe3c55f0ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabName: Entrance 2
-  id: 2
-  idParent: 
-  dontSave: 0
-  componentSaveMode: 0
-  componentTypesToSave: []
+  lastExitName: MainScene2
