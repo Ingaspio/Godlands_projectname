@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0d34e73c28316443b32e3fe3c55f0ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lastExitName: MainScene3
+  lastExitName: StartRegion3
 --- !u!61 &-1139946830955925054
 BoxCollider2D:
   m_ObjectHideFlags: 0

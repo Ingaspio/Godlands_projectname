@@ -1,12 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using Toolbox;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.Windows;
 using DG.Tweening;
 using Input = UnityEngine.Input;
-using UnityEditor.UIElements;
 using System.Linq;
 
 public class PathfindMovement : MonoCache

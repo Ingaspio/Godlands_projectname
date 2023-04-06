@@ -112,4 +112,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0d34e73c28316443b32e3fe3c55f0ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lastExitName: MainScene2
+  lastExitName: StartRegion2

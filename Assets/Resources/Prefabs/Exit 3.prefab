@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96e977b65d6712499341e7d6abb4341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeonSceneName: MainScene
-  exitName: MainScene3
+  dungeonSceneName: StartRegion
+  exitName: StartRegion3
 --- !u!114 &2609266627569154850
 MonoBehaviour:
   m_ObjectHideFlags: 0

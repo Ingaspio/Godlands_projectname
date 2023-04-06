@@ -257,68 +257,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 15744515}
   m_CullTransparentMesh: 1
---- !u!1 &28791640
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 28791641}
-  - component: {fileID: 28791643}
-  m_Layer: 0
-  m_Name: LevelSaveManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &28791641
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 28791640}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 239165950}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &28791643
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 28791640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e06ac438f9a80fa40acdb74f80985b59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tiles:
-  - {fileID: 11400000, guid: 336ab9ec6d477f54cab651620c335d29, type: 2}
-  - {fileID: 11400000, guid: 17700a224b51e094ab1645dd5593c697, type: 2}
-  - {fileID: 11400000, guid: 31cd0ac26e6913a4db7389abca13f66c, type: 2}
-  - {fileID: 11400000, guid: 45abaee42f5095a458c3899876fc9fcd, type: 2}
-  - {fileID: 11400000, guid: b4ee1346119e74043a12c940e8a4a4c7, type: 2}
-  - {fileID: 11400000, guid: d5d5cbe8703044b4f98aba4ee1be7704, type: 2}
-  - {fileID: 11400000, guid: 2a1049d64b24fd741aa5139b24087bad, type: 2}
-  - {fileID: 11400000, guid: 97cf7cf9d27c4f24f86147fb76c8a144, type: 2}
-  - {fileID: 11400000, guid: a66fff96e96026b49a4234065aced995, type: 2}
-  - {fileID: 11400000, guid: 8206f76cf666cba4090c2cbd24172530, type: 2}
-  - {fileID: 11400000, guid: 010e06bb0de602345b8c100f24077e5e, type: 2}
-  - {fileID: 11400000, guid: 039bdbfbd740e8a4185e7dc61e6f4378, type: 2}
-  - {fileID: 11400000, guid: 2c6c4c4a54fb6db45961e17dc537acf3, type: 2}
-  tilemaps:
-  - {fileID: 778864176}
-  - {fileID: 941798808}
-  - {fileID: 261116164}
 --- !u!1 &49327500
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,7 +524,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 239165950}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &227006822
 MonoBehaviour:
@@ -689,8 +627,7 @@ Transform:
   m_Children:
   - {fileID: 1892079847}
   - {fileID: 2088381249}
-  - {fileID: 28791641}
-  - {fileID: 1661488898}
+  - {fileID: 1291787432}
   - {fileID: 227006821}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -1418,7 +1355,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 28791643}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
         m_MethodName: LoadLevel
         m_Mode: 1
@@ -4226,7 +4163,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1268241143}
   m_CullTransparentMesh: 1
---- !u!1 &1661488897
+--- !u!1 &1291787431
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4234,42 +4171,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1661488898}
-  - component: {fileID: 1661488899}
+  - component: {fileID: 1291787432}
+  - component: {fileID: 1291787433}
   m_Layer: 0
-  m_Name: Routine
+  m_Name: LevelSaveManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1661488898
+--- !u!4 &1291787432
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1661488897}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 1291787431}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 239165950}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1661488899
+--- !u!114 &1291787433
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1661488897}
+  m_GameObject: {fileID: 1291787431}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccbbe510ae1d05c4682b0f7f1a442eda, type: 3}
+  m_Script: {fileID: 11500000, guid: e06ac438f9a80fa40acdb74f80985b59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tiles:
+  - {fileID: 11400000, guid: 2c6c4c4a54fb6db45961e17dc537acf3, type: 2}
+  - {fileID: 11400000, guid: 0e90d49bd442c0a468c0bc81c8972e46, type: 2}
+  tilemaps:
+  - {fileID: 261116164}
+  - {fileID: 711542549}
 --- !u!1 &1766357482
 GameObject:
   m_ObjectHideFlags: 0
@@ -4402,7 +4345,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 28791643}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
         m_MethodName: SaveLevel
         m_Mode: 1

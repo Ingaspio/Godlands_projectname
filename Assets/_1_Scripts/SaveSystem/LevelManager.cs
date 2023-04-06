@@ -11,10 +11,11 @@ public class LevelManager : MonoBehaviour
     public List<Tilemap> tilemaps;
     public void SaveLevel() 
     {
+        LevelData leveldata = new LevelData();
         foreach (var maps in tilemaps)
         {
             BoundsInt bounds = maps.cellBounds;
-            LevelData leveldata = new LevelData();
+            
             for (int x = bounds.xMin; x < bounds.xMax; x++)
             {
                 for (int y = bounds.yMin; y < bounds.yMax; y++)
@@ -30,20 +31,17 @@ public class LevelManager : MonoBehaviour
                 }
             }
             string json = JsonUtility.ToJson(leveldata, true);
-            //for (int s = 0; s <= SceneManager.sceneCount; s++)
-            //{
-                
-            //}
+            
             File.WriteAllText(Application.dataPath + SceneManager.GetActiveScene().name + ".json ", json);
             Debug.Log("Level " + SceneManager.GetActiveScene().name + " saved");
         }
 
     }
-    public void LoadLevel(string sceneName) 
+    public void LoadLevel(/*string sceneName*/) 
     {
         foreach (var maps in tilemaps)
         {
-            string json = File.ReadAllText(Application.dataPath + sceneName + ".json ");
+            string json = File.ReadAllText(Application.dataPath + SceneManager.GetActiveScene().name + ".json ");
             LevelData leveldata = JsonUtility.FromJson<LevelData>(json);
 
             maps.ClearAllTiles();
@@ -61,19 +59,3 @@ public class LevelData
     public List<int> posX = new();
     public List<int> posY = new();
 }
-
-//IEnumerable<LevelTile> GetTilesFromMap(Tilemap map)
-//{
-//    foreach (var pos in map.cellBounds.allPositionsWithin)
-//    {
-//        if (map.HasTile(pos))
-//        {
-//            var levelTile = map.GetTile<LevelTile>(pos);
-//            yield return new LevelTile()
-//            {
-//                position = pos,
-//                tile = levelTile
-//            };
-//        }
-//    }
-//}

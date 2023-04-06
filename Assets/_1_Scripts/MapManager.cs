@@ -18,8 +18,8 @@ public class MapManager : MonoCache
     
     private void Start()
     {
-        //SaveLoadUtility saveLoadUtility = FindObjectOfType<SaveLoadUtility>();
-        //saveLoadUtility.SaveGame(SceneManager.GetActiveScene().name);
+        
+        
         ObjectsPlacementOnTiles objectPlacement = FindObjectOfType<ObjectsPlacementOnTiles>();
         objectPlacement.PlaceObjects();
         
@@ -27,7 +27,7 @@ public class MapManager : MonoCache
         fogOfWarScript.PaintFoW();
         fogOfWarScript.PaintFoWExplored();
 
-        //StartCoroutine(entranceRoutine.SceneChangeRoutine());
+        
 
     }
 
