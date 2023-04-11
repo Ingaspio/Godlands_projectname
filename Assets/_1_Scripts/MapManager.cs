@@ -18,16 +18,12 @@ public class MapManager : MonoCache
     
     private void Start()
     {
-        
-        
+       
         ObjectsPlacementOnTiles objectPlacement = FindObjectOfType<ObjectsPlacementOnTiles>();
         objectPlacement.PlaceObjects();
-        
 
         fogOfWarScript.PaintFoW();
         fogOfWarScript.PaintFoWExplored();
-
-        
 
     }
 
@@ -35,8 +31,8 @@ public class MapManager : MonoCache
     { 
         fogOfWarScript.PaintFoWExplored();
 
-        Vector2 playerPosition = new Vector2(PlayerCharacter.instance.transform.position.x, PlayerCharacter.instance.transform.position.y);
-        fogOfWarScript.AddVision(playerPosition);
+        //Vector2 playerPosition = new Vector2(PlayerCharacter.instance.transform.position.x, PlayerCharacter.instance.transform.position.y);
+        //fogOfWarScript.AddVision(playerPosition);
        
     }
 }
