@@ -2540,7 +2540,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: e92527f6d0fe45342ab542b47346d45f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3171,6 +3171,7 @@ GameObject:
   - component: {fileID: 992640269}
   - component: {fileID: 992640271}
   - component: {fileID: 992640270}
+  - component: {fileID: 992640272}
   m_Layer: 0
   m_Name: PlayerSpace
   m_TagString: Player
@@ -3309,13 +3310,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f190e74f328ebd448fe26298788bc0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemapVisualizer: {fileID: 1906758589}
-  walls: {fileID: 778864176}
-  fogOfWarExplored: {fileID: 711542549}
-  fogOfWar: {fileID: 261116164}
-  floorTilemap: {fileID: 941798808}
-  vision: 2
+  vision: 3
   tileAnchor: {x: 0, y: 0, z: 0}
+--- !u!114 &992640272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992640264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9169c244721396a4fb3ba476c56d853e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 992640268}
+  tilemap: {fileID: 778864176}
+  obstacleTiles:
+  - {fileID: 11400000, guid: 336ab9ec6d477f54cab651620c335d29, type: 2}
+  - {fileID: 11400000, guid: 17700a224b51e094ab1645dd5593c697, type: 2}
+  - {fileID: 11400000, guid: 31cd0ac26e6913a4db7389abca13f66c, type: 2}
+  - {fileID: 11400000, guid: 45abaee42f5095a458c3899876fc9fcd, type: 2}
+  - {fileID: 11400000, guid: b4ee1346119e74043a12c940e8a4a4c7, type: 2}
+  - {fileID: 11400000, guid: d5d5cbe8703044b4f98aba4ee1be7704, type: 2}
+  - {fileID: 11400000, guid: 97cf7cf9d27c4f24f86147fb76c8a144, type: 2}
+  - {fileID: 11400000, guid: a66fff96e96026b49a4234065aced995, type: 2}
+  - {fileID: 11400000, guid: 8206f76cf666cba4090c2cbd24172530, type: 2}
+  - {fileID: 11400000, guid: 010e06bb0de602345b8c100f24077e5e, type: 2}
+  viewDistance: 3
 --- !u!1 &1037719327
 GameObject:
   m_ObjectHideFlags: 0
@@ -4104,7 +4126,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2019843093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4168,7 +4190,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!4 &2019843095
 Transform:
@@ -4178,7 +4200,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2019843092}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5, y: -0.5, z: 0}
+  m_LocalPosition: {x: 2.5, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4217,7 +4239,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemap: {fileID: 261116164}
   testAddvisionAmount: 3
-  fogOfWarScript: {fileID: 1892079848}
 --- !u!4 &2088381249
 Transform:
   m_ObjectHideFlags: 0
