@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,7 +18,7 @@ public static class ProceduralGenerationAlgorithms
         }
         return path;
     }
-    public static List<Vector2Int> RandomWalkCorridor(Vector2Int startPosition,int corridorLength) 
+    public static List<Vector2Int> RandomWalkCorridor(Vector2Int startPosition, int corridorLength) 
     { 
         List<Vector2Int> corridor = new List<Vector2Int>();
         var direction = Direction2D.GetRandomCardinalDirection();

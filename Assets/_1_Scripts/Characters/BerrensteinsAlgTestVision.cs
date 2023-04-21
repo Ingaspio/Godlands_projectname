@@ -1,12 +1,7 @@
-using JetBrains.Annotations;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.UIElements;
+
 
 public class BerrensteinsAlgTestVision : MonoCache
 {   
@@ -81,9 +76,6 @@ public class BerrensteinsAlgTestVision : MonoCache
         }
         return visionLine;
     }
-
-
-
 
     public void AddVision()
     {

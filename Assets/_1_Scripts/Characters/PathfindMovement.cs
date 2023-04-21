@@ -46,6 +46,7 @@ public class PathfindMovement : MonoCache
                 if (tapTime == 2 && wayPoints != null && Vector3.Distance(wayPoints.LastOrDefault(), mousePos) < 0.25f)
                 {
                     if (showDebug == true)
+                        Debug.Log("Players position: " + PlayerCharacter.instance.transform.position);
                         Debug.Log("Last Vector: " + wayPoints.LastOrDefault());
                     startPos.DOPath(wayPoints.ToArray(), 1f);
                 }
