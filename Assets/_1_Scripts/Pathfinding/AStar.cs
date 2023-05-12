@@ -1,218 +1,197 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections.Generic;
-using UnityEngine.Tilemaps;
-using System;
+using UnityEngine;
 
-namespace Toolbox
+public class Astar
 {
-    /// <summary>
-    /// A* search based off Amit Patel's implementation.
-    /// </summary>
-    /// <remarks>
-    /// Patel's implementation is different than what you see in most algorithms and AI textbooks.
-    /// https://www.redblobgames.com/pathfinding/a-star/implementation.html
-    /// </remarks>
-    public static class AStar
+    public Spot[,] Spots;
+    public Astar(Vector3Int[,] grid, int columns, int rows)
     {
-        /// <summary>
-        /// Find a path to the goal or the closest open cell to the goal.
-        /// If the self tile is encountered the cell be considered open.
-        /// </summary>
-        public static LinePath FindLinePathClosest(Tilemap map, Vector3 start, Vector3 goal)
+        Spots = new Spot[columns, rows];
+    }
+    private bool IsValidPath(Vector3Int[,] grid, Spot start, Spot end)
+    {
+        if (end == null)
+            return false;
+        if (start == null)
+            return false;
+        if (end.Height >= 1)
+            return false;
+        return true;
+    }
+    public List<Spot> CreatePath(Vector3Int[,] grid, Vector2Int start, Vector2Int end, int length)
+    {
+        //if (!IsValidPath(grid, start, end))
+        //     return null;
+
+        Spot End = null;
+        Spot Start = null;
+        var columns = Spots.GetUpperBound(0) + 1;
+        var rows = Spots.GetUpperBound(1) + 1;
+        Spots = new Spot[columns, rows];
+
+        for (int i = 0; i < columns; i++)
         {
-            List<Vector3> path = FindPathClosest(map, start, goal);
-            return ToLinePath(path);
+            for (int j = 0; j < rows; j++)
+            {
+                Spots[i, j] = new Spot(grid[i, j].x, grid[i, j].y, grid[i, j].z);
+            }
         }
 
-        static LinePath ToLinePath(List<Vector3> path)
+        for (int i = 0; i < columns; i++)
         {
-            LinePath lp = null;
-
-            if (path != null)
+            for (int j = 0; j < rows; j++)
             {
-                lp = new LinePath(path);
+                Spots[i, j].AddNeighboors(Spots, i, j);
+                if (Spots[i, j].X == start.x && Spots[i, j].Y == start.y)
+                    Start = Spots[i, j];
+                else if (Spots[i, j].X == end.x && Spots[i, j].Y == end.y)
+                    End = Spots[i, j];
+            }
+        }
+        if (!IsValidPath(grid, Start, End))
+            return null;
+        List<Spot> OpenSet = new List<Spot>();
+        List<Spot> ClosedSet = new List<Spot>();
+
+        OpenSet.Add(Start);
+
+        while (OpenSet.Count > 0)
+        {
+            //Find shortest step distance in the direction of your goal within the open set
+            int winner = 0;
+            for (int i = 0; i < OpenSet.Count; i++)
+                if (OpenSet[i].F < OpenSet[winner].F)
+                    winner = i;
+                else if (OpenSet[i].F == OpenSet[winner].F)//tie breaking for faster routing
+                    if (OpenSet[i].H < OpenSet[winner].H)
+                        winner = i;
+
+            var current = OpenSet[winner];
+
+            //Found the path, creates and returns the path
+            if (End != null && OpenSet[winner] == End)
+            {
+                List<Spot> Path = new List<Spot>();
+                var temp = current;
+                Path.Add(temp);
+                while (temp.previous != null)
+                {
+                    Path.Add(temp.previous);
+                    temp = temp.previous;
+                }
+                if (length - (Path.Count - 1) < 0)
+                {
+                    Path.RemoveRange(0, (Path.Count - 1) - length);
+                }
+                return Path;
             }
 
-            return lp;
-        }
+            OpenSet.Remove(current);
+            ClosedSet.Add(current);
 
-        /// <summary>
-        /// Find a path to the goal or the closest open cell to the goal.
-        /// If the self tile is encountered the cell be considered open.
-        /// </summary>
-        public static List<Vector3> FindPathClosest(Tilemap map, Vector3 start, Vector3 goal)
-        {
-            List<Vector3Int> path = FindPathClosest(map, map.WorldToCell(start), map.WorldToCell(goal));
-            return map.GetCellCenterWorld(path);
-        }
 
-        /// <summary>
-        /// Find a path to the goal or the closest open cell to the goal.
-        /// If the self tile is encountered the cell be considered open.
-        /// </summary>
-        public static List<Vector3Int> FindPathClosest(Tilemap map, Vector3Int start, Vector3Int goal)
-        {
-            if (!map.IsCellEmpty(goal) && goal != start)
+            //Finds the next closest step on the grid
+            var neighboors = current.Neighboors;
+            for (int i = 0; i < neighboors.Count; i++)//look threw our current spots neighboors (current spot is the shortest F distance in openSet
             {
-                goal = ClosestCell(OpenCells(map, start, goal), start, goal);
-            }
-
-            return AStar.FindPath(new MoveGraph(map), start, goal, Vector3Int.Distance);
-        }
-
-        static HashSet<Vector3Int> OpenCells(Tilemap map, Vector3Int start, Vector3Int goal)
-        {
-            Dictionary<Vector3Int, int> counts = new Dictionary<Vector3Int, int>();
-            counts.Add(goal, 0);
-
-            HashSet<Vector3Int> openCells = new HashSet<Vector3Int>();
-
-            float minDist = Mathf.Infinity;
-            int minCount = int.MaxValue;
-
-            map.BreadthFirstTraversal(goal, Utils.FourDirections, (current, next) =>
-            {
-                float dist = Vector3Int.Distance(goal, next);
-                int count = counts[current] + 1;
-                counts[next] = count;
-
-                if ((map.IsCellEmpty(next) || next == start) && dist <= minDist)
+                var n = neighboors[i];
+                if (!ClosedSet.Contains(n) && n.Height < 1)//Checks to make sure the neighboor of our current tile is not within closed set, and has a height of less than 1
                 {
-                    minDist = dist;
-                    minCount = count;
-                    openCells.Add(next);
-                }
+                    var tempG = current.G + 1;//gets a temp comparison integer for seeing if a route is shorter than our current path
 
-                return count <= minCount && map.IsInBounds(next);
-            });
-
-            return openCells;
-        }
-
-        static Vector3Int ClosestCell(HashSet<Vector3Int> openCells, Vector3Int start, Vector3Int goal)
-        {
-            Vector3Int closest = goal;
-            float minDist = Mathf.Infinity;
-
-            foreach (Vector3Int c in openCells)
-            {
-                float dist = Vector3Int.Distance(start, c);
-
-                if (dist < minDist)
-                {
-                    minDist = dist;
-                    closest = c;
-                }
-            }
-
-            return closest;
-        }
-
-        /// <summary>
-        /// Finds a path in the tilemap using world coordinates.
-        /// </summary>
-        public static LinePath FindLinePath(Tilemap map, Vector3 start, Vector3 goal)
-        {
-            List<Vector3> path = FindPath(map, start, goal);
-            return ToLinePath(path);
-        }
-
-        /// <summary>
-        /// Finds a path in the tilemap using world coordinates.
-        /// </summary>
-        public static List<Vector3> FindPath(Tilemap map, Vector3 start, Vector3 goal)
-        {
-            List<Vector3Int> path = FindPath(map, map.WorldToCell(start), map.WorldToCell(goal));
-            return map.GetCellCenterWorld(path);
-        }
-
-        /// <summary>
-        /// Finds a path in the tilemap using cell coordinates.
-        /// </summary>
-        public static List<Vector3Int> FindPath(Tilemap map, Vector3Int start, Vector3Int goal)
-        {
-            return FindPath(new MoveGraph(map), start, goal, Vector3Int.Distance);
-        }
-
-        /// <summary>
-        /// Finds a path in the graph using cell coordinates.
-        /// </summary>
-        public static List<Vector3Int> FindPath(IGraph graph, Vector3Int start, Vector3Int goal, Func<Vector3Int, Vector3Int, float> heuristic)
-        {
-            PriorityQueue<Vector3Int> open = new PriorityQueue<Vector3Int>();
-            open.Enqueue(start, 0);
-
-            Dictionary<Vector3Int, Vector3Int> cameFrom = new Dictionary<Vector3Int, Vector3Int>();
-            cameFrom[start] = start;
-
-            Dictionary<Vector3Int, float> costSoFar = new Dictionary<Vector3Int, float>();
-            costSoFar[start] = 0;
-
-            while (open.Count > 0)
-            {
-                Vector3Int current = open.Dequeue();
-
-                if (current == goal)
-                {
-                    break;
-                }
-
-                foreach (Vector3Int next in graph.Neighbors(current))
-                {
-                    float newCost = costSoFar[current] + graph.Cost(current, next);
-
-                    if (!costSoFar.ContainsKey(next) || newCost < costSoFar[next])
+                    bool newPath = false;
+                    if (OpenSet.Contains(n)) //Checks if the neighboor we are checking is within the openset
                     {
-                        costSoFar[next] = newCost;
-                        float priority = newCost + heuristic(next, goal);
-                        open.Enqueue(next, priority);
-                        cameFrom[next] = current;
+                        if (tempG < n.G)//The distance to the end goal from this neighboor is shorter so we need a new path
+                        {
+                            n.G = tempG;
+                            newPath = true;
+                        }
+                    }
+                    else//if its not in openSet or closed set, then it IS a new path and we should add it too openset
+                    {
+                        n.G = tempG;
+                        newPath = true;
+                        OpenSet.Add(n);
+                    }
+                    if (newPath)//if it is a newPath caclulate the H and F and set current to the neighboors previous
+                    {
+                        n.H = Heuristic(n, End);
+                        n.F = n.G + n.H;
+                        n.previous = current;
                     }
                 }
             }
 
-            List<Vector3Int> path = null;
-
-            if (cameFrom.ContainsKey(goal))
-            {
-                path = new List<Vector3Int>();
-
-                Vector3Int v = goal;
-
-                while (v != start)
-                {
-                    RemoveDuplicates(path, v);
-                    path.Add(v);
-                    v = cameFrom[v];
-                }
-
-                RemoveDuplicates(path, start);
-                path.Add(start);
-
-                path.Reverse();
-            }
-
-            return path;
         }
-
-        static void RemoveDuplicates(List<Vector3Int> path, Vector3Int v)
-        {
-            if (path.Count >= 2)
-            {
-                Vector3Int last = path[path.Count - 1];
-                Vector3Int secondLast = path[path.Count - 2];
-
-                Vector3Int dir1 = last - secondLast;
-                dir1.Clamp(Vector3Int.one * -1, Vector3Int.one);
-
-                Vector3Int dir2 = v - last;
-                dir2.Clamp(Vector3Int.one * -1, Vector3Int.one);
-
-                if (dir1 == dir2)
-                {
-                    path.RemoveAt(path.Count - 1);
-                }
-            }
-        }
+        return null;
     }
+
+    private int Heuristic(Spot a, Spot b)
+    {
+        //manhattan
+        var dx = Math.Abs(a.X - b.X);
+        var dy = Math.Abs(a.Y - b.Y);
+        return 1 * (dx + dy);
+
+        #region diagonal
+        //diagonal
+        // Chebyshev distance
+        //var D = 1;
+        // var D2 = 1;
+        //octile distance
+        //var D = 1;
+        //var D2 = 1;
+        //var dx = Math.Abs(a.X - b.X);
+        //var dy = Math.Abs(a.Y - b.Y);
+        //var result = (int)(1 * (dx + dy) + (D2 - 2 * D));
+        //return result;// *= (1 + (1 / 1000));
+        //return (int)Math.Abs(a.X - b.X) + Math.Abs(a.Y - b.Y);
+        #endregion
+    }
+}
+public class Spot
+{
+    public int X;
+    public int Y;
+    public int F;
+    public int G;
+    public int H;
+    public int Height = 0;
+    public List<Spot> Neighboors;
+    public Spot previous = null;
+    public Spot(int x, int y, int height)
+    {
+        X = x;
+        Y = y;
+        F = 0;
+        G = 0;
+        H = 0;
+        Neighboors = new List<Spot>();
+        Height = height;
+    }
+    public void AddNeighboors(Spot[,] grid, int x, int y)
+    {
+        if (x < grid.GetUpperBound(0))
+            Neighboors.Add(grid[x + 1, y]);
+        if (x > 0)
+            Neighboors.Add(grid[x - 1, y]);
+        if (y < grid.GetUpperBound(1))
+            Neighboors.Add(grid[x, y + 1]);
+        if (y > 0)
+            Neighboors.Add(grid[x, y - 1]);
+        #region diagonal
+        //if (X > 0 && Y > 0)
+        //    Neighboors.Add(grid[X - 1, Y - 1]);
+        //if (X < Utils.Columns - 1 && Y > 0)
+        //    Neighboors.Add(grid[X + 1, Y - 1]);
+        //if (X > 0 && Y < Utils.Rows - 1)
+        //    Neighboors.Add(grid[X - 1, Y + 1]);
+        //if (X < Utils.Columns - 1 && Y < Utils.Rows - 1)
+        //    Neighboors.Add(grid[X + 1, Y + 1]);
+        #endregion
+    }
+
+
 }

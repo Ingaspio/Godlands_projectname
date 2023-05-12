@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AbstractDungeonGenerator : MonoBehaviour
+public abstract class AbstractDungeonGenerator : MonoCache
 {
     [SerializeField]
     protected TilemapVisualizer tilemapVisualizer;

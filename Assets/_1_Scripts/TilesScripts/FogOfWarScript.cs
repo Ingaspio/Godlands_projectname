@@ -53,12 +53,4 @@ public class FogOfWarScript : MonoBehaviour
         }
         return playerVision;
     }
-    public void AddVision(Vector2 playerTP)
-    {
-        PlayerCharacter player = FindObjectOfType<PlayerCharacter>();
-        Vector2 playerPosition = new Vector2(player.transform.position.x, player.transform.position.y);
-        HashSet<Vector2Int> playerVision = FoWVisionTiles(playerPosition, testRadius);
-        tilemapVisualizer.ClearTiles(playerVision, fogOfWar);
-        tilemapVisualizer.ClearTiles(playerVision, fogOfWarExplored);
-    }
 }

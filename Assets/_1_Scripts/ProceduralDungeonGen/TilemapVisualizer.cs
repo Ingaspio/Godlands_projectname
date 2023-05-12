@@ -33,13 +33,13 @@ public class TilemapVisualizer : MonoBehaviour
     }
 
 
-    private void PaintSingleTile(Tilemap tilemap, TileBase tile, Vector2Int position)
+    public void PaintSingleTile(Tilemap tilemap, TileBase tile, Vector2Int position)
     {
         var tilePosition = tilemap.WorldToCell((Vector3Int)position);
         tilemap.SetTile(tilePosition,tile);
     }
 
-    private void ClearSingleTile(Tilemap tilemap, Vector2Int position)
+    public void ClearSingleTile(Tilemap tilemap, Vector2Int position)
     {
         var tilePosition = tilemap.WorldToCell((Vector3Int)position);
         tilemap.SetTile(tilePosition, null);

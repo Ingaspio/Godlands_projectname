@@ -6,13 +6,7 @@ using System.Collections.Generic;
 public class MapManager : MonoCache
 {
     [SerializeField]
-    Tilemap tilemap;
-    //[SerializeField]
-    //EntranceRoutine entranceRoutine;    
-    [SerializeField]
-    private float testAddvisionAmount;
-    
-    
+    Tilemap tilemap;  
     
     
     private void Start()
