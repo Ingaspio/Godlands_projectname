@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 public class LevelManager : MonoBehaviour
 { 
-    public List<TileData> tiles = new List<TileData>();    
+    public List<CustomTile> tiles = new List<CustomTile>();    
     
     public List<Tilemap> tilemaps;
     public void SaveLevel() 
@@ -21,7 +21,7 @@ public class LevelManager : MonoBehaviour
                 for (int y = bounds.yMin; y < bounds.yMax; y++)
                 {
                     TileBase temp = maps.GetTile(new Vector3Int(x, y, 0));
-                    TileData temptile = tiles.Find(t => t.tileBase == temp);
+                    CustomTile temptile = tiles.Find(t => t.tileBase == temp);
                     if (temptile != null)
                     {
                         leveldata.tiles.Add(temptile.id);

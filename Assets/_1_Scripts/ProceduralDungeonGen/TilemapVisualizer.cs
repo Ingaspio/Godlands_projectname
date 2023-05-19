@@ -8,7 +8,7 @@ public class TilemapVisualizer : MonoBehaviour
     [SerializeField]
     private Tilemap floorTilemap, wallTilemap, fowTilemap, fowExploredTilemap;
     [SerializeField]
-    private TileData fowExploredTile, fowTile, floorTile, wallTop, wallSideRight, wallSideLeft, wallBottom, wallFull, wallInnerCornerDownLeft, wallInnerCornerDownRight, 
+    private CustomTile fowExploredTile, fowTile, floorTile, wallTop, wallSideRight, wallSideLeft, wallBottom, wallFull, wallInnerCornerDownLeft, wallInnerCornerDownRight, 
         wallDiagonalCornerDownRight, wallDiagonalCornerDownLeft, wallDiagonalCornerUpRight, wallDiagonalCornerUpLeft;
 
     public void PaintFloorTiles(IEnumerable<Vector2Int> floorPositions) 
@@ -24,7 +24,7 @@ public class TilemapVisualizer : MonoBehaviour
         PaintTiles(fowPosition, fowExploredTilemap, fowExploredTile);
     }
 
-    private void PaintTiles(IEnumerable<Vector2Int> positions, Tilemap tilemap, TileData tileData)
+    private void PaintTiles(IEnumerable<Vector2Int> positions, Tilemap tilemap, CustomTile tileData)
     {
         foreach (var position in positions) 
         {
@@ -61,7 +61,7 @@ public class TilemapVisualizer : MonoBehaviour
     internal void PaintSingleBasicWall(Vector2Int position, string binaryType)
     {
         int typeAsInt = Convert.ToInt32(binaryType, 2);
-        TileData tileData = null;
+        CustomTile tileData = null;
         if (WallTypesHelper.wallTop.Contains(typeAsInt)) { tileData = wallTop; }
         else if (WallTypesHelper.wallSideRight.Contains(typeAsInt)) { tileData = wallSideRight; }
         else if (WallTypesHelper.wallBottom.Contains(typeAsInt)) { tileData = wallBottom; }
@@ -74,7 +74,7 @@ public class TilemapVisualizer : MonoBehaviour
     internal void PaintSingleCornerWall(Vector2Int position, string binaryType)
     {
         int typeAsInt = Convert.ToInt32(binaryType, 2);
-        TileData tileData = null;
+        CustomTile tileData = null;
 
         if (WallTypesHelper.wallInnerCornerDownLeft.Contains(typeAsInt)) { tileData = wallInnerCornerDownLeft; }
         else if (WallTypesHelper.wallInnerCornerDownRight.Contains(typeAsInt)) { tileData = wallInnerCornerDownRight; }

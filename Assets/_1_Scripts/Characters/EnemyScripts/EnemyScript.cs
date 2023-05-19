@@ -7,8 +7,8 @@ public class EnemyScript : MonoCache
     public CharacterStatsSO enemyStatsSO;
     float timer = 0;
     float updateTimer = 2f;
-    public TileData enemyTile;
-    public TileData floorTile;
+    public CustomTile enemyTile;
+    public CustomTile floorTile;
     Vector3Int previousPos;
     Tilemap TM;
 

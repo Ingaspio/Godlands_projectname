@@ -29,7 +29,7 @@ public class GridManager : MonoCache
                 Vector3Int myGridPos = new Vector3Int(x, y, 0);
                 TileBase myTile = tilemap.GetTile(myGridPos);
                 
-                if (myTile && myTile is TileData && ((TileData)myTile) == true)
+                if (myTile && myTile is CustomTile && ((CustomTile)myTile) == true)
                 {
                     spots[i, j] = new Vector3Int(x, y, 0);
                 }

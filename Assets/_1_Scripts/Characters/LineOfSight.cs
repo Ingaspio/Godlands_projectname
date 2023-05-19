@@ -6,7 +6,7 @@ public class LineOfSight : MonoCache
 {
     public Transform player;
     public Tilemap tilemap;
-    public TileData[] obstacleTiles;
+    public CustomTile[] obstacleTiles;
     public float viewDistance;
 
     public override void OnTick()
@@ -39,7 +39,7 @@ public class LineOfSight : MonoCache
         if (tile == null)
             return false;
 
-        foreach (TileData obstacleTile in obstacleTiles)
+        foreach (CustomTile obstacleTile in obstacleTiles)
         {
             if (tile == obstacleTile)
                 return true;
