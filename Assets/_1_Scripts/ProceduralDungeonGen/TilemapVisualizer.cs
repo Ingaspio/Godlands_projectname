@@ -28,7 +28,7 @@ public class TilemapVisualizer : MonoBehaviour
     {
         foreach (var position in positions) 
         {
-            PaintSingleTile(tilemap, tileData.tileBase, position);
+            PaintSingleTile(tilemap, tileData, position);
         }
     }
 
@@ -68,7 +68,7 @@ public class TilemapVisualizer : MonoBehaviour
         else if (WallTypesHelper.wallSideLeft.Contains(typeAsInt)) { tileData = wallSideLeft; }
         else if (WallTypesHelper.wallFull.Contains(typeAsInt)) { tileData = wallFull; }
         if (tileData != null)
-            PaintSingleTile(wallTilemap, tileData.tileBase, position);
+            PaintSingleTile(wallTilemap, tileData, position);
     }
 
     internal void PaintSingleCornerWall(Vector2Int position, string binaryType)
@@ -85,6 +85,6 @@ public class TilemapVisualizer : MonoBehaviour
         else if (WallTypesHelper.wallFullEightDirections.Contains(typeAsInt)) { tileData = wallFull; }
         else if (WallTypesHelper.wallBottomEightDirections.Contains(typeAsInt)) { tileData = wallBottom; }
         if (tileData != null)
-            PaintSingleTile(wallTilemap, tileData.tileBase, position);
+            PaintSingleTile(wallTilemap, tileData, position);
     }
 }

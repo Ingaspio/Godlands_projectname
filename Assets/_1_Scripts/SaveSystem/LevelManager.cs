@@ -21,7 +21,7 @@ public class LevelManager : MonoBehaviour
                 for (int y = bounds.yMin; y < bounds.yMax; y++)
                 {
                     TileBase temp = maps.GetTile(new Vector3Int(x, y, 0));
-                    CustomTile temptile = tiles.Find(t => t.tileBase == temp);
+                    CustomTile temptile = tiles.Find(t => t == temp);
                     if (temptile != null)
                     {
                         leveldata.tiles.Add(temptile.id);
@@ -48,7 +48,7 @@ public class LevelManager : MonoBehaviour
 
             for (int i = 0; i < leveldata.tiles.Count; i++)
             {
-                maps.SetTile(new Vector3Int(leveldata.posX[i], leveldata.posY[i], 0), tiles.Find(t => t.id == leveldata.tiles[i]).tileBase);
+                maps.SetTile(new Vector3Int(leveldata.posX[i], leveldata.posY[i], 0), tiles.Find(t => t.id == leveldata.tiles[i]));
             }
         } 
     }

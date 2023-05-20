@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f9c7ba7751cfb84096d50a2ba41591d, type: 3}
   m_Name: WallDiagCornUpLTD
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 252558984209222252, guid: a0d3fbbc155eb404a87f827b40a48dfe, type: 3}
+  m_Sprite: {fileID: -3684562326207342857, guid: a0d3fbbc155eb404a87f827b40a48dfe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
@@ -34,7 +34,6 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
   m_ColliderType: 1
-  tileBase: {fileID: 11400000, guid: 990709a76d4f9124db8ca4026e79a932, type: 2}
   id: w_diagcorner_ul
   isWalkable: 0
   baseWalkSpeed: 0

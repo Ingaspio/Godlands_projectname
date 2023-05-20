@@ -34,7 +34,6 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
   m_ColliderType: 1
-  tileBase: {fileID: 11400000, guid: f0876383a0a9e9f4a8f543d8515e12c0, type: 2}
   id: w_diagcorner_dl
   isWalkable: 0
   baseWalkSpeed: 0
