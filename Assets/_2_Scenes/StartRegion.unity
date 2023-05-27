@@ -3718,6 +3718,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 11400000, guid: 8172cd2595ed0584398999d6b6bd77ba, type: 2}
+  path: []
 --- !u!212 &992640267
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3835,12 +3836,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 992640264}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 909e88a7c3b9ecb4b8b18bd8f116ec90, type: 3}
+  m_Script: {fileID: 11500000, guid: fa14a02daee09be479051a82dbd2dfe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemap: {fileID: 941798808}
-  startCell: {x: 0, y: 0, z: 0}
-  endCell: {x: 0, y: 0, z: 0}
 --- !u!1 &1037719327
 GameObject:
   m_ObjectHideFlags: 0
@@ -4854,7 +4852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c78fc4ef6d936d64e8af32b4eb507407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemap: {fileID: 261116164}
+  floor: {fileID: 941798808}
 --- !u!4 &2088381249
 Transform:
   m_ObjectHideFlags: 0

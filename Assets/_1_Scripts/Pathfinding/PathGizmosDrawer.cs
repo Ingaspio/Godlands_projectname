@@ -4,23 +4,26 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using Pathfinding;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class PathGizmosDrawer : MonoBehaviour
 {
     public Tilemap tilemap;
     public Vector3Int startCell;
     public Vector3Int endCell;
-    bool bothEndsAssiged = false;
+    //bool bothEndsAssiged = false;
     List<Vector3Int> path;
     UltimatePathfinding<Vector3Int> pathfinder;
+    public int clickTimes = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        
         //tilemap = GameObject.Find("Floor").GetComponent<Tilemap>();
         pathfinder = new UltimatePathfinding<Vector3Int>();
-        pathfinder.GetHeuristicDistance = (l, r) => GetManhattanDistance(l, r);
-        pathfinder.GetNeighborsAndStepCosts = (x) => GetNeighboursAndCosts(x);
+        pathfinder.GetHeuristicDistance = (l, r) => MapManager.mainMap.GetManhattanDistance(l, r);
+        pathfinder.GetNeighborsAndStepCosts = (x) => MapManager.mainMap.GetNeighboursAndCosts(x); 
     }
 
     // Update is called once per frame
@@ -28,22 +31,32 @@ public class PathGizmosDrawer : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0)) 
         {
-            if (bothEndsAssiged) 
+            startCell = new Vector3Int((int)PlayerCharacter.instance.transform.position.x, (int)PlayerCharacter.instance.transform.position.y, 0);
+            startCell.z = 0;
+            clickTimes++;
+            if (Input.GetMouseButtonDown(1))
+                clickTimes = 0;
+            if (clickTimes == 1) 
             { 
-                startCell = tilemap.WorldToCell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-                startCell.z = 0;
-            }
-            else 
-            {
                 endCell = tilemap.WorldToCell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
                 endCell.z = 0;
+
                 if (pathfinder.GeneratePath(startCell, endCell, out path))
+                {
                     path.Insert(0, startCell);
+                    Debug.Log(path.Count);
+                }
             }
-            bothEndsAssiged = !bothEndsAssiged;
+            if (path.Count > 0 && clickTimes == 2)
+                DrawPathGizmo();
+            if (path.Count > 0 && clickTimes == 3)
+            {
+                while(transform.position != tilemap.CellToWorld(path[0]))
+                    transform.position = Vector3.MoveTowards(transform.position, tilemap.CellToWorld(path[0]), 0.5f);
+                clickTimes = 0;
+
+            }
         }
-        if (bothEndsAssiged && path.Count > 0)
-            DrawPathGizmo();
     }
 
     void DrawPathGizmo()
@@ -54,19 +67,5 @@ public class PathGizmosDrawer : MonoBehaviour
         }
 
     }
-    public float GetManhattanDistance(Vector3Int A, Vector3Int B) 
-    { 
-        return Mathf.Abs(A.x-B.x) + Mathf.Abs(A.y-B.y);
-    }
-
-    public Dictionary<Vector3Int, float> GetNeighboursAndCosts(Vector3Int pos)
-    {
-        Dictionary<Vector3Int, float> result = new Dictionary<Vector3Int, float>();
-        foreach (Vector3Int neighbour in pos.Neighbours())
-        {
-            if (tilemap.HasTile(neighbour) && tilemap.GetTile<CustomTile>(neighbour).isWalkable)
-                result.Add(neighbour, 1);
-        }
-        return result;
-    }
+    
 }
