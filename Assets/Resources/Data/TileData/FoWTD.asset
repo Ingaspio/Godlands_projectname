@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f9c7ba7751cfb84096d50a2ba41591d, type: 3}
   m_Name: FoWTD
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -8120323925528636241, guid: a0d3fbbc155eb404a87f827b40a48dfe, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0e2f54cff86a6c44d933662d6fce13e6, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_Transform:
     e00: 1

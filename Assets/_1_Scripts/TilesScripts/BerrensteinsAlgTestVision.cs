@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -7,8 +8,7 @@ public class BerrensteinsAlgTestVision : MonoCache
 {   
     public int vision = Mathf.Max(1, Mathf.Min(10, 3));
     public Vector3 tileAnchor;
-    
-    
+    FogOfWarScript fogOfWarScript;
     float timer = 0f;
     private float updateTimer = 0.6f;
 
@@ -55,22 +55,24 @@ public class BerrensteinsAlgTestVision : MonoCache
         tilemapVisualizer.ClearTiles(GetVisionPlayerCircle(), fowExplored);
 
     }
-    private void Awake()
+    private void Start()
     {
-        FogOfWarScript fogOfWarScript = FindObjectOfType<FogOfWarScript>();
+        fogOfWarScript = GameObject.Find("FoWManager").GetComponent<FogOfWarScript>();
         fogOfWarScript.PaintFoW();
+        
     }
     public override void OnTick() 
     {
-        FogOfWarScript fogOfWarScript = FindObjectOfType<FogOfWarScript>();
-        timer += Time.deltaTime;
-        if(timer >= updateTimer) 
+        if (transform.hasChanged) 
         {
-            fogOfWarScript.PaintFoWExplored();
-            timer = 0f;
+            StartCoroutine(WaitForSecondToPaintFoWExplored());
         }
-        AddVision();
-
     }
 
+    private IEnumerator WaitForSecondToPaintFoWExplored() 
+    { 
+        yield return new WaitForSeconds(2);
+        fogOfWarScript.PaintFoWExplored();
+        AddVision();
+    }
 }

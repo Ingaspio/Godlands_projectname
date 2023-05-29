@@ -3825,7 +3825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f190e74f328ebd448fe26298788bc0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vision: 8
+  vision: 3
   tileAnchor: {x: 0, y: 0, z: 0}
 --- !u!114 &992640272
 MonoBehaviour:
@@ -4853,6 +4853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floor: {fileID: 941798808}
+  fogOfWar: {fileID: 261116164}
 --- !u!4 &2088381249
 Transform:
   m_ObjectHideFlags: 0

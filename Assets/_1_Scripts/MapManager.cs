@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class MapManager : MonoCache
 {
     [SerializeField]
-    Tilemap floor;
+    Tilemap floor, fogOfWar;
     public static MapManager mainMap;
     
     private void Start()
@@ -41,7 +41,7 @@ public class MapManager : MonoCache
         Dictionary<Vector3Int, float> result = new Dictionary<Vector3Int, float>();
         foreach (Vector3Int neighbour in pos.Neighbours())
         {
-            if (floor.HasTile(neighbour) /*&& tilemap.GetTile<CustomTile>(neighbour).isWalkable*/)
+            if (floor.HasTile(neighbour) && floor.GetTile<CustomTile>(neighbour).isWalkable && !fogOfWar.HasTile(neighbour))
                 result.Add(neighbour, 1);
         }
         return result;
