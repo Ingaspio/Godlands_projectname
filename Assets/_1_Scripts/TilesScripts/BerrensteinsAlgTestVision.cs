@@ -1,16 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 
-public class BerrensteinsAlgTestVision : MonoCache
-{   
-    public int vision = Mathf.Max(1, Mathf.Min(10, 3));
+
+public class BerrensteinsAlgTestVision
+{
+    private int vision;
     public Vector3 tileAnchor;
-    FogOfWarScript fogOfWarScript;
-    float timer = 0f;
-    private float updateTimer = 0.6f;
 
     public HashSet<Vector2Int> GetVisionPlayerCircle() 
     {
@@ -30,6 +26,7 @@ public class BerrensteinsAlgTestVision : MonoCache
     public List<Vector2Int> GetEndPoints() 
     {
         Vector3 playersPosition = PlayerCharacter.instance.transform.position;
+        vision = PlayerCharacter.instance.player.visionRadius;
         List<Vector2Int> endPoints = new();
 
         for (int x = -vision; x <= vision; x++)
@@ -43,36 +40,5 @@ public class BerrensteinsAlgTestVision : MonoCache
             }
         }
         return endPoints;
-    }
-
-    public void AddVision()
-    {
-        TilemapVisualizer tilemapVisualizer = FindObjectOfType<TilemapVisualizer>();
-        Tilemap fow = GameObject.Find("FogOfWar").GetComponent<Tilemap>();
-        Tilemap fowExplored = GameObject.Find("FogOfWarExplored").GetComponent<Tilemap>();
-
-        tilemapVisualizer.ClearTiles(GetVisionPlayerCircle(), fow);
-        tilemapVisualizer.ClearTiles(GetVisionPlayerCircle(), fowExplored);
-
-    }
-    private void Start()
-    {
-        fogOfWarScript = GameObject.Find("FoWManager").GetComponent<FogOfWarScript>();
-        fogOfWarScript.PaintFoW();
-        
-    }
-    public override void OnTick() 
-    {
-        if (transform.hasChanged) 
-        {
-            StartCoroutine(WaitForSecondToPaintFoWExplored());
-        }
-    }
-
-    private IEnumerator WaitForSecondToPaintFoWExplored() 
-    { 
-        yield return new WaitForSeconds(2);
-        fogOfWarScript.PaintFoWExplored();
-        AddVision();
     }
 }

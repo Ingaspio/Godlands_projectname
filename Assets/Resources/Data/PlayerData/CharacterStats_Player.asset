@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Amazon
   description: Dragon's Crown Amazon
-  tileData: {fileID: 11400000, guid: 17492a4d4807c3148ac6d141f51da14a, type: 2}
-  visionRadius: 3
+  visionRadius: 8
   maxAP: 9
   maxHealth: 20
   damage: 5

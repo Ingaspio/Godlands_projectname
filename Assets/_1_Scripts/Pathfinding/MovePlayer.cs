@@ -25,7 +25,7 @@ public class MovePlayer : MonoCache
             { 
                 PlayerCharacter.instance.path = path;
                 PlayerCharacter.instance.StopAllCoroutines();
-                PlayerCharacter.instance.StartCoroutine(PlayerCharacter.instance.followThePath(0.01f));
+                PlayerCharacter.instance.StartCoroutine(PlayerCharacter.instance.FollowThePath(0.01f));
             }
         }
     }

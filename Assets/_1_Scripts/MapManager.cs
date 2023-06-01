@@ -2,19 +2,24 @@ using UnityEngine.Tilemaps;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using System;
+using System.Collections;
 
 public class MapManager : MonoCache
 {
     [SerializeField]
     Tilemap floor, fogOfWar;
     public static MapManager mainMap;
-    
+    FogOfWarScript fog;
     private void Start()
     {
         if (mainMap == null) mainMap = this; else throw new System.Exception("There's can be only one map manager");
-
+        fog = GameObject.Find("FoWManager").GetComponent<FogOfWarScript>();
+        fog.PaintFoW();
         ObjectsPlacementOnTiles objectPlacement = FindObjectOfType<ObjectsPlacementOnTiles>();
         objectPlacement.PlaceObjects();
+        StartCoroutine(WaitForSecondToPaintFoWExplored());
     }
 
     public Vector3Int WorldToCell(Vector3 worldPosition) 
@@ -45,5 +50,16 @@ public class MapManager : MonoCache
                 result.Add(neighbour, 1);
         }
         return result;
+    }
+    IEnumerator WaitForSecondToPaintFoWExplored() 
+    {
+        while (true)
+        {
+            if (PlayerCharacter.instance.transform.hasChanged)
+            {
+                fog.PaintFoWExplored();
+                yield return new WaitForSeconds(3);
+            }
+        }
     }
 }
