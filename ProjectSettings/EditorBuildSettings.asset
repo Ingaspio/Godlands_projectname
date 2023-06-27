@@ -7,15 +7,9 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/_2_Scenes/StartRegion.unity
+    guid: ba065e892903ec24dbd432ce41223b61
+  - enabled: 1
+    path: Assets/_2_Scenes/Dungeon1.unity
     guid: 09e2b468c42ba6c4492be9acec9baec9
-  - enabled: 1
-    path: Assets/_2_Scenes/3.unity
-    guid: d27b1fc1c504f5848b96070cd2a870cd
-  - enabled: 1
-    path: Assets/_2_Scenes/2.unity
-    guid: 2e078fc3bdb2b8448be71d7bdab374d6
-  - enabled: 1
-    path: Assets/_2_Scenes/1.unity
-    guid: 77aa6fffab91ea24e8af1636e2ff89f4
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 42bb5448056baed4e96a0ec7c68a151f, type: 2}

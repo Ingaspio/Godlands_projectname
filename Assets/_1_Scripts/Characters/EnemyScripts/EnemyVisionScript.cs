@@ -42,12 +42,12 @@ public class EnemyVisionScript : MonoCache
 
     public override void OnTick()
     {
-        timer += Time.deltaTime;
-        if (timer >= updateTimer)
-        {   
-            CombatInteractionStart.EnemyCombatInitiate(EnemyVisionTiles(enemyStats));
-            timer = 0; 
-        }
+        // timer += Time.deltaTime;
+        // if (timer >= updateTimer)
+        // {   
+        //     CombatInteractionStart.EnemyCombatInitiate(EnemyVisionTiles(enemyStats));
+        //     timer = 0; 
+        // }
     }
    
 }

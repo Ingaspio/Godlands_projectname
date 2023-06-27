@@ -1,50 +1,31 @@
 
 using System;
 
-public enum GameState { WorldMap, Exploration, StartCombat, PlayerTurn, 
-    PlayerMove, PlayerAction, EnemyTurn, EndCombat, FinGame, MenuWindow}
+// public enum AbstractGameState { WorldMap, Exploration, PlayerTurn, 
+//      EnemyTurn, FinGame, MenuWindow}
 public class GameManager : MonoCache
 {
     public static GameManager Instance { get; private set; }
 
-    public GameState State;
-    public static event Action<GameState> OnGameStateChanged;
-    private void Awake()
+    public AbstractGameState currentState;
+    public StateEnemyTurn stateEnemyTurn = new StateEnemyTurn();
+    public StatePlayerTurn  statePlayerTurn = new StatePlayerTurn();
+    public StateExploration stateExploration = new StateExploration();
+    public static event Action<AbstractGameState> OnGameStateChanged;
+    private void Start()
     {
         Instance = this;
+        currentState = stateExploration;
+        currentState.EnterState(this);
     }
-    public void UpdateGameState(GameState newState) 
+    private void Update() {
+        currentState.UpdateState(this);
+    }
+
+    public void SwitchState(AbstractGameState gameState)
     {
-        State = newState;
-        switch (newState)
-        {
-            case GameState.WorldMap:
-                break;
-            case GameState.Exploration:
-                break;
-            case GameState.StartCombat:
-
-                break;
-            case GameState.PlayerTurn:
-                break;
-            case GameState.PlayerMove:
-                break;
-            case GameState.PlayerAction:
-                break;
-            case GameState.EnemyTurn:
-                break;
-            case GameState.EndCombat:
-                break;
-            case GameState.FinGame:
-                break;
-            case GameState.MenuWindow:
-                break;
-            default:
-               newState = GameState.Exploration;
-               break;
-
-        }
-
-        OnGameStateChanged?.Invoke(newState);
-    }
+        currentState = gameState;
+        gameState.EnterState(this);
+    } 
+   
 }
