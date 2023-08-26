@@ -7,6 +7,7 @@ public class StatePlayerTurn : AbstractGameState
     public override void EnterState(GameManager gameManager)
     {
         Debug.Log("Enter Combat Mode");
+        
     }
     public override void UpdateState(GameManager gameManager)
     {

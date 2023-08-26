@@ -10,13 +10,13 @@ public class PlayerCharacter : MonoBehaviour
     Vector3Int locatedCell;
     Vector3 tileAnchor =  new Vector3(0.5f, 0.5f, 0);
     
+      
     public void Awake() 
     {
         if (instance != null)
         { Destroy(gameObject); }
         else
         { instance = this; }
-        //player.OnCharacterStateChanged += Player_OnCharacterStateChanged;
         DontDestroyOnLoad(gameObject);
     }
    

@@ -13,7 +13,7 @@ public class MovePlayer : MonoCache
         pathfinder.GetHeuristicDistance = (x,y) => MapManager.mainMap.GetManhattanDistance(x,y);
         pathfinder.GetNeighborsAndStepCosts = (x) => MapManager.mainMap.GetNeighboursAndCosts(x);
     }
-
+    
     // Update is called once per frame
     public override void OnTick()
     {
