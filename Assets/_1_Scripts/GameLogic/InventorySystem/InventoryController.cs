@@ -6,7 +6,7 @@ using Inventory.Model;
 
 namespace Inventory
 {
-    public class InventoryController : MonoCache
+    public class InventoryController : MonoBehaviour
 {
     [SerializeField] private UI_InventoryPage inventoryUI;
 
@@ -28,7 +28,7 @@ namespace Inventory
         {
             if (item.IsEmpty)
                 continue;
-            inventoryData.AddItem(item.item, item.quantity);
+            inventoryData.AddItem(item);
         } 
     }
     private void UpdateInventoryUI(Dictionary<int, InventoryItem> inventoryState)
@@ -73,7 +73,7 @@ namespace Inventory
     {
         
     }
-    public override void OnTick()
+    public void Update()
     {
         if(Input.GetKeyDown(KeyCode.I))
         {

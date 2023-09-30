@@ -32,6 +32,24 @@ public static class ProceduralGenerationAlgorithms
         }
         return corridor;
     }
+    public static List<Vector2Int> RandomWalkCorridor2TilesWide(Vector2Int startPosition, int corridorLength) 
+    { 
+        List<Vector2Int> corridor = new List<Vector2Int>();
+        var direction = Direction2D.GetRandomCardinalDirection();
+        var currentPosition = startPosition;
+        var currentPositionClone = new Vector2Int(startPosition.x + 1, startPosition.y + 1);
+        corridor.Add(currentPosition);
+
+        for (int i = 0; i < corridorLength; i++)
+        {
+            currentPosition += direction;
+            currentPositionClone += direction;
+            corridor.Add(currentPosition);
+            corridor.Add(currentPositionClone);  
+        }
+        return corridor;
+    }
+
 
     public static List<BoundsInt> BinarySpacePartitioning(BoundsInt spaceToSplit, int minWidth, int minHeight) 
     { 
@@ -118,5 +136,4 @@ public static class Direction2D
 
     public static Vector2Int GetRandomCardinalDirection() 
     { return cardinalDirectionsList[Random.Range(0,cardinalDirectionsList.Count)]; }
-
 } 

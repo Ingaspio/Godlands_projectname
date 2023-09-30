@@ -15,6 +15,8 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     private float roomPercent = 0.8f;
     [SerializeField]
     public SimpleRandomWalkSO roomGenerationParameters;
+    [SerializeField]
+    private bool widerCorridorEnable = false;
 
     //PCG Data
     private Dictionary<Vector2Int, HashSet<Vector2Int>> roomsDictionary 
@@ -101,10 +103,20 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
 
         for (int i = 0; i < corridorCount; i++)
         {
-            var corridor = ProceduralGenerationAlgorithms.RandomWalkCorridor(currentPosition, corridorLength);
-            currentPosition = corridor[corridor.Count-1];
-            potentialRoomPositions.Add(currentPosition);
-            floorPositions.UnionWith(corridor);
+            if (widerCorridorEnable == false)
+            {
+                var corridor = ProceduralGenerationAlgorithms.RandomWalkCorridor(currentPosition, corridorLength);
+                currentPosition = corridor[corridor.Count-1];
+                potentialRoomPositions.Add(currentPosition);
+                floorPositions.UnionWith(corridor);
+            }
+            else
+            {
+                var corridor = ProceduralGenerationAlgorithms.RandomWalkCorridor2TilesWide(currentPosition, corridorLength);
+                currentPosition = corridor[corridor.Count - 1];
+                potentialRoomPositions.Add(currentPosition);
+                floorPositions.UnionWith(corridor);
+            }
         }
         corridorPositions = new HashSet<Vector2Int>(floorPositions);
     }

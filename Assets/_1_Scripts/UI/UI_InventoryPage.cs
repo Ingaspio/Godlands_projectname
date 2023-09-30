@@ -79,6 +79,11 @@ public class UI_InventoryPage : MonoBehaviour
         mouseFollower.Toggle(true);
         mouseFollower.SetData(image, quantity);
     }
+      
+    private void HandleEndDrag(UI_InventoryItem inventoryItemUI)
+    {
+        ResetDraggedItem();
+    }
     private void HandleSwap(UI_InventoryItem inventoryItemUI)
     {
         int index = listOfUIItems.IndexOf(inventoryItemUI);
@@ -86,13 +91,9 @@ public class UI_InventoryPage : MonoBehaviour
         {  
             return;
         }
-        OnSwapItems?.Invoke(currentlyDraggedItemIndex, index);
+        OnSwapItems?.Invoke(currentlyDraggedItemIndex,index);
         HandleItemSelection(inventoryItemUI); 
-    }   
-    private void HandleEndDrag(UI_InventoryItem inventoryItemUI)
-    {
-        ResetDraggedItem();
-    }
+    } 
     private void HandleShowItemActions(UI_InventoryItem inventoryItemUI)
     {
 
@@ -123,7 +124,7 @@ public class UI_InventoryPage : MonoBehaviour
     public void ResetDraggedItem()
     {
         mouseFollower.Toggle(false);
-            currentlyDraggedItemIndex = -1;
+        currentlyDraggedItemIndex = -1;
     }
     public void ResetAllItems()
     {
